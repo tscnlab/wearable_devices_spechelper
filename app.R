@@ -2,6 +2,7 @@
 library(shiny)
 library(bslib)
 library(shinyWidgets)
+library(yaml)
 
 #defining the sidebar
 settings <- 
@@ -12,13 +13,18 @@ settings <-
     #           accept = c(".txt")
     # ),
     
-    actionButton("create_pdf", 
-                 span(strong("Create PDF")), 
+    downloadButton("create_pdf", 
+                 span(strong("Create & Download PDF")), 
                  icon = icon("file-pdf")
                  ),
+    a(
     actionButton("to_research_guide",
                  span(strong("Go to RDA research guide")),
-                 icon = icon("book")))
+                 icon = icon("book")),
+    href = "https://rda-wg-visualexperiencedata.github.io/ResearcherGuide/",
+    target = "_blank"
+    )
+  )
 
 #defining the main body
 cards <- list(
@@ -68,11 +74,17 @@ ui <- page_navbar(
     "Main",
     accordion(
       multiple = FALSE,
-      open = "software",
+      open = "general",
       accordion_panel(
         title = h2("General information"),
         icon = bsicons::bs_icon("clipboard", size = "1.5em"),
         value = "general",
+        textInput(
+          "general_project_name",
+          label = "Project name",
+          placeholder = "short project name, used for the PDF filename",
+          width = "100%"
+        ),
         selectInput(
           "general_study_type",
           "Select the type of study",
@@ -84,7 +96,7 @@ ui <- page_navbar(
                       label = "Description of the (main) use case", 
                       width = "100%", 
                       rows = 4,
-                      placeholder = "please provide a succinct description of the inded use case(s) for the wearables"
+                      placeholder = "please provide a succinct description of the intended use case(s) for the wearables"
                       ),
         numericInput("general_device_number",
                      "How many devices do you require?", 
@@ -126,7 +138,8 @@ ui <- page_navbar(
             "hardware_device_size_unit",
             label = "Values in",
             inline = TRUE,
-            choices = c("centimeters (cm)", "inches (in)"),
+            choiceNames = c("centimeters (cm)", "inches (in)"),
+            choiceValues = c("cm", "in"),
             width = "100%"
           ),
         h3("Battery"),
@@ -155,7 +168,8 @@ ui <- page_navbar(
           label = "How flexible does the recording interval need to be (at setup)?",
           choices = c("One setting (in the specified range) is sufficient",
                       "Multiple options are required to allow for coarser intervals",
-                      "Recording interval needs to be freely adjustable"),
+                      "Recording interval needs to be freely adjustable"), 
+          selected = 0,
           width = "100%"
         ),
       ),
@@ -221,126 +235,27 @@ ui <- page_navbar(
 
 # Server -----------
 server <- function(input, output) {
-  #number of files
-  output$n_files <- renderText({
-    if(is.null(input$file)) return("no files provided")
-    input$file |> nrow()
-  })
   
-  #filenames
-  output$filenames <- renderText({
-    input$file$name |>  paste0(collapse = ", ")
-  })
-  
-  #pattern to capture Ids
-  output$pattern <- renderText({
-    if(is.null(input$file)) return("no files provided")
-    input$file$name |> 
-      stringr::str_extract_all("(S\\d{3}_[wch])", simplify = TRUE) |> 
-      paste0(collapse = ", ")
-  })
-  
-  #change the filenames to the original name
-  new_names <- reactive({
-    req(input$file)
-    #renaming the temp-files to their old filename
-    new_names <- paste0(dirname(input$file$datapath), "/", input$file$name)
-    file.rename(input$file$datapath, new_names)
-    new_names
-  }) |> bindEvent(input$file)
-  
-  # import and import message
-  data <- reactive({
-    # req(input$file)
-    #actual import
-    data <- import$ActLumus(new_names(), tz = input$tz, auto.id = "(S\\d{3}_[wch])",
-                            dst_adjustment = "dst_jumps" %in% input$options,
-                            # remove_duplicates = "remove_duplicates" %in% input$options,
-                            auto.plot = FALSE, print_n = Inf) 
-    data
-  }) |> bindEvent(input$import)
-  
-  observe({ 
-    showNotification( 
-      paste("Import is in progress. Should the app freeze and grey out, if the import is not successful. A message will be shown upon successfull import."),
-      type = "default", 
-      duration = 5 
-    ) 
-  }) |> 
-    bindEvent(input$import)
-  
-  observe({ 
-    nav_select("main", selected = "Analysis")
-  }) |> 
-    bindEvent(input$to_analysis)
-  
-  #outputs p1
-  output$import_msg <- renderPrint({
-    invisible(data())
-  })
-  
-  observe({
-    # req(data())
-    showModal(
-      modalDialog(
-        title = icon("check", style = "font-size: 60px;"),
-        easy_close = TRUE,
-        "Import seems to have been successful. Please check the import message and overview plot and continue to the analysis tab if satisfied."
-      ),
-    )
-  }) |>
-    bindEvent(data())
-  
-  
-  # output$import_table <- renderDT({
-  #   req(data())
-  #   data()
-  # })
-  
-  output$plot_overview <- renderPlot({
-    req(data())
-    data() |> gg_overview()
-  })
-  
-  
-  #------------ page Analysis
-  
-  #create a wider data frame
-  data2 <- reactive({
-    req(data())
-    data() |> 
-      tidyr::separate_wider_delim("Id", "_" , names = c("Id", "Position")) |> 
-      dplyr::mutate(Position = factor(Position, levels = c("w", "c", "h"), labels = c("wrist", "chest", "glasses")),
-             Id = factor(Id)) |> 
-      dplyr::group_by(Id, Position)
-  })
-  
-  #epoch
-  output$epoch <- renderText({
-    req(data2())
-    data2() |> dominant_epoch() |> dplyr::pull(dominant.epoch) |> unique() |> as.duration() |> paste0(collapse = ", ")
-  })
-  
-  #gaps
-  output$gaps <- renderText({
-    req(data2())
-    gaps <- 
-      data2() |> gap_finder(gap.data = TRUE) |> summarize(last(gap.id)) |> pull(3) |> median()
-    if(is.na(gaps)) {
-      gaps <- "No gaps found"
+  output$create_pdf <- downloadHandler(
+    filename = function() {
+      paste0(Sys.Date(),"_wearable_speclist_", input$general_project_name, ".pdf")
+    },
+    content = function(file) {
+      input_list <- input |> reactiveValuesToList()
+      saveRDS(input_list, file = "input_list.rds")
+      quarto::quarto_render(
+        input = "report_template.qmd",
+        execute_params = list(
+          project_name = input_list$general_project_name
+        )
+      )
+      # copy the quarto generated file to `file` argument.
+      generated_file_name <- "report_template.pdf"
+      file.copy(generated_file_name, file)
+      #remove the generated RDS file
+      file.remove("input_list.rds")
     }
-    gaps
-  })
-  
-  #plot output
-  output$plot_ggdays <- renderPlot({
-    req(data2())
-    data2() |> 
-      gg_day(geom = "ribbon", aes_fill = Position, aes_col = Position, 
-             group = interaction(Id, Position), alpha = 0.25, linewidth = 0.1)
-    
-  })
-  
+  )
   
 }
 
