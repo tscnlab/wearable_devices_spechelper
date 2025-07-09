@@ -12,6 +12,7 @@ format:
   docx: default
 params:
   project_name: "general_project_name"
+  bookmark: "https://tscnlab.github.io/wearable_devices_spechelper/"
 ---
 
 ```{r}
@@ -31,7 +32,9 @@ input <-
 
 ## Preface
 
-This document was generated with the [Wearable device Specification Tool]("https://tscnlab.shinyapps.io/wearable_devices_spechelper/"), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements.
+This document was generated with the [wearable device specification tool]("https://tscnlab.shinyapps.io/wearable_devices_spechelper/"), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements.
+
+[**Restore this configuration in the tool through this link**](`r params$bookmark`)
 
 In some situations, a device might not be able to meet all the requirements, and the researcher might need to make a decision on which requirements are most important. This document is a resource to guide the decision process between researchers and manufacturers.
 

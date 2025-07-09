@@ -39,7 +39,8 @@ introPage <- tagList(
 )
 
 how_to <- tagList(
-  p("The purpose of this tool is to help researchers to collect specifications for wearable devices in a way that they can compare them easily with actual device specifications during procurement. Down below, the section ", strong("How to select a wearable light logger or optical radiation dosimeter?"), " lays out a few general thoughts researchers should keep in mind. The page ", strong("Specification"), " allows the specification of relevant parameters of a light logger alongside several dimensions. These specifications can be exported into a PDF, or a MS Word file, to be used during the procurement phase for wearable devices. The specification can be sent to manufacturers, which can add their actual device specifications alongside the requirements. This way, researchers have the necessary information in one place and can weigh up- and downsides of a given device. in a comprehensive list."),
+  p("The purpose of this tool is to help researchers to collect specifications for wearable devices in a way that they can compare them easily with actual device specifications during procurement. Down below, the section ", strong("How to select a wearable light logger or optical radiation dosimeter?"), " lays out a few general thoughts researchers should keep in mind. The page ", strong("Specification"), " allows the specification of relevant parameters of a light logger alongside several dimensions. These specifications can be exported into a PDF, or a MS Word file, to be used during the procurement phase for wearable devices. The specification can be sent to manufacturers, which can add their actual device specifications alongside the requirements. This way, researchers have the necessary information in one place and can weigh up- and downsides of a given device in a comprehensive list."),
+  strong("The url of this site is bookmarked and you can copy it to return to the current setting at any time. The link will also be stored in the output documents for convenient access."),
   h3(actionButton("to_specification_form",
                span(strong("Start the specification")),
                icon = icon("file-pen"), class = "btn-success btn-lg")),
@@ -56,7 +57,6 @@ settings <-
     #           multiple = TRUE, 
     #           accept = c(".txt")
     # ),
-    bookmarkButton(),
     downloadButton("create_docx", 
                    span(strong("Create & Download Word")), 
                    icon = icon("file-word"),
@@ -104,7 +104,9 @@ ui <- function(request) {
   fillable = FALSE,
   nav_spacer(),
   nav_panel(
+    
     "Introduction", 
+    verbatimTextOutput("query"),
       card(
         card_title("How to use this tool?", container = h2),
         card_body(how_to
@@ -289,13 +291,15 @@ server <- function(input, output, session) {
       paste0(Sys.Date(),"_wearable_speclist_", input$general_project_name, ".pdf")
     },
     content = function(file) {
+      url <- url()
       input_list <- input |> reactiveValuesToList()
       saveRDS(input_list, file = "input_list.rds")
       quarto::quarto_render(
         input = "report_template.qmd",
         output_format = "typst",
         execute_params = list(
-          project_name = input_list$general_project_name
+          project_name = input_list$general_project_name,
+          bookmark = url
         )
       )
       # copy the quarto generated file to `file` argument.
@@ -314,18 +318,30 @@ server <- function(input, output, session) {
     updateTabsetPanel(inputId = "pages", selected = "Introduction")
   }) |> bindEvent(input$to_introduction)
   
+  observe({
+    reactiveValuesToList(input)
+    session$doBookmark()
+  })
+  
+  url <- reactiveVal()
+  
+  onBookmarked(updateQueryString)
+  onBookmarked(\(x) url(x))
+  
   output$create_docx <- downloadHandler(
     filename = function() {
       paste0(Sys.Date(),"_wearable_speclist_", input$general_project_name, ".docx")
     },
     content = function(file) {
+      url <- url()
       input_list <- input |> reactiveValuesToList()
       saveRDS(input_list, file = "input_list.rds")
       quarto::quarto_render(
         input = "report_template.qmd",
         output_format = "docx",
         execute_params = list(
-          project_name = input_list$general_project_name
+          project_name = input_list$general_project_name,
+          bookmark = url
         )
       )
       # copy the quarto generated file to `file` argument.
