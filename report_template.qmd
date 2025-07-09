@@ -9,6 +9,7 @@ format:
     fig-dpi: 300
     fig-height: 3.45
     mainfont: "Arial"
+  docx: default
 params:
   project_name: "general_project_name"
 ---
@@ -30,7 +31,7 @@ input <-
 
 ## Preface
 
-This document was generated with the Wearable device Specification Tool ("https://tscnlab.github.io/wearable_devices_spechelper/"), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements.
+This document was generated with the [Wearable device Specification Tool]("https://tscnlab.shinyapps.io/wearable_devices_spechelper/"), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements.
 
 In some situations, a device might not be able to meet all the requirements, and the researcher might need to make a decision on which requirements are most important. This document is a resource to guide the decision process between researchers and manufacturers.
 
