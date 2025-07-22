@@ -1,0 +1,40 @@
+#app title
+app_title <- 
+h1(
+  span(
+    "Wearable light logger and optical radiation dosimeter",
+    br(),
+    "Specification tool"
+  )
+)
+
+#app footer
+
+app_footer <- 
+tags$footer(
+  a(
+    tags$image(src = 'logo_banner2.png', width = "100%"),
+    href = "https://www.melidos.eu",
+    target = "_blank"
+  )
+)
+
+nav_items <- tagList(
+  nav_item(
+    a(
+      span(tags$image(src = 'logo.png', width = "60px"), align = "center"),
+      href = "https://github.com/tscnlab/LightLogR/",
+      target = "_blank"
+    )
+  ),
+nav_item(
+  a(
+    tags$image(src = "logo_with_text-01.png", width = "250px"),
+    href = "https://www.tscnlab.org",
+    target = "_blank"
+  )
+),
+nav_item(
+  input_dark_mode(id = "mode")
+)
+)

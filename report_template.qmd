@@ -9,7 +9,11 @@ format:
     fig-dpi: 300
     fig-height: 3.45
     mainfont: "Arial"
-  docx: default
+    template-partials:
+      - typst-template.typ
+  docx: 
+    reference-doc: www/reference.docx
+title-block-banner: true
 params:
   project_name: "general_project_name"
   bookmark: "https://tscnlab.github.io/wearable_devices_spechelper/"
@@ -51,7 +55,7 @@ Type(s) of study: `r input$general_study_type`
 | Aspect | Requirement | Device specs |
 |-----------------------------|------------------------|------------------------|
 | Mounting | `r input$hardware_device_mounting` |  |
-| Max dimensions (WxBxH) | `r input$hardware_device_width` x `r input$hardware_device_breadth` x `r input$hardware_device_height` `r input$hardware_device_size_unit` |  |
+| Max dimensions (WxBxH) | `r input$hardware_device_width` x `r input$hardware_device_depth` x `r input$hardware_device_height` `r input$hardware_device_size_unit` |  |
 | Battery: Continuous runtime, based on the specified recording/sampling interval | `r input$hardware_battery_capacity` |  |
 
 ## Data requirements
