@@ -3,6 +3,8 @@ library(shiny)
 library(bslib)
 library(shinyWidgets)
 library(yaml)
+library(lubridate)
+library(shinyBS) 
 
 #load UI components for the intro page
 source("scripts/intro_UI.R")
@@ -24,6 +26,7 @@ source("scripts/download_handler.R", local = TRUE)
 # UI ------------
 ui <- function(request) {
   page_navbar(
+    selected = "Specification",
   title = app_title,
   footer = app_footer,
   id = "pages",
@@ -32,7 +35,7 @@ ui <- function(request) {
   site_introduction,
   site_specification,
   site_about,
-  !!!nav_items
+  !!!nav_items,
 )
 }
 
@@ -74,6 +77,15 @@ server <- function(input, output, session) {
     },
     content = file_preparation("docx", url, input)
   )
+  
+  output$storage_days <- renderText({ 
+    req(input$on_device_days, input$hardware_recording_interval)
+    obs_number <- 
+    input$on_device_days * 24*60*60/
+      as.numeric(as.duration(input$hardware_recording_interval))
+    (paste("Storage capacity required for a minimum of", 
+               strong(obs_number) , "observations"))
+    })
   
 }
 

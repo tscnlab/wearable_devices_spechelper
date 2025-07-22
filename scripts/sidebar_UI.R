@@ -1,6 +1,7 @@
 #defining the sidebar
 settings <- 
   sidebar(
+    open = FALSE,
     downloadButton("create_docx", 
                    span(strong("Create & Download Word")), 
                    icon = icon("file-word"),

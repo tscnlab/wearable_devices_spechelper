@@ -11,7 +11,7 @@ nav_panel(
   layout_sidebar( sidebar = settings, 
                   accordion(
                     multiple = FALSE,
-                    open = "general",
+                    open = "hardware",
                     accordion_panel(
                       title = h2("General information"),
                       icon = bsicons::bs_icon("clipboard", size = "1.5em"),
