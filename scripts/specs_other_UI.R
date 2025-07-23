@@ -29,12 +29,12 @@ other_specs <- tagList(
     min     = 1,
     step    = 1
   ),
-  bsTooltip(
-    id        = "calibration_valid_months",
-    title     = "How long (in months) the factory calibration should remain valid before recalibration is required.",
-    placement = "right",
-    options   = list(container = "body")
-  ),
+  # bsTooltip(
+  #   id        = "calibration_valid_months",
+  #   title     = "How long (in months) the factory calibration should remain valid before recalibration is required.",
+  #   placement = "right",
+  #   options   = list(container = "body")
+  # ),
   
   radioButtons(
     inputId = "recalibration_method",
@@ -47,12 +47,12 @@ other_specs <- tagList(
     ),
     selected = character(0)
   ),
-  bsTooltip(
-    id        = "recalibration_method",
-    title     = "Select the acceptable recalibration process and whether an extra fee is acceptable.",
-    placement = "right",
-    options   = list(container = "body")
-  ),
+  # bsTooltip(
+  #   id        = "recalibration_method",
+  #   title     = "Select the acceptable recalibration process and whether an extra fee is acceptable.",
+  #   placement = "right",
+  #   options   = list(container = "body")
+  # ),
   ## Accessories -------------------------------------------------------------
   h4("Accessories"),
   checkboxInput(
@@ -60,12 +60,12 @@ other_specs <- tagList(
     label   = "Protective carrying case required",
     value   = FALSE
   ),
-  bsTooltip(
-    id        = "protective_case",
-    title     = "Tick if the device must come with a light‑blocking, protective storage case.",
-    placement = "right",
-    options   = list(container = "body")
-  ),
+  # bsTooltip(
+  #   id        = "protective_case",
+  #   title     = "Tick if the device must come with a light‑blocking, protective storage case.",
+  #   placement = "right",
+  #   options   = list(container = "body")
+  # ),
   
   ## Participant Materials ---------------------------------------------------
   h4("Participant Materials"),
@@ -74,12 +74,12 @@ other_specs <- tagList(
     label   = "Provide wearer instructions",
     value   = FALSE
   ),
-  bsTooltip(
-    id        = "wearer_instructions",
-    title     = "If checked, manufacturer must supply easy‑to‑understand instructions suitable for study participants.",
-    placement = "right",
-    options   = list(container = "body")
-  ),
+  # bsTooltip(
+  #   id        = "wearer_instructions",
+  #   title     = "If checked, manufacturer must supply easy‑to‑understand instructions suitable for study participants.",
+  #   placement = "right",
+  #   options   = list(container = "body")
+  # ),
   conditionalPanel(
     condition = "input.wearer_instructions == true",
     selectizeInput(

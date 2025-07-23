@@ -25,7 +25,7 @@ source("scripts/download_handler.R", local = TRUE)
 # UI ------------
 ui <- function(request) {
   page_navbar(
-    selected = "Specification",
+    # selected = "Specification",
   title = app_title,
   footer = app_footer,
   id = "pages",
