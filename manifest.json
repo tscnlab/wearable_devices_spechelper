@@ -231,6 +231,35 @@
         "Archs": "commonmark.so.dSYM"
       }
     },
+    "cpp11": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "cpp11",
+        "Title": "A C++11 Interface for R's C Interface",
+        "Version": "0.5.2",
+        "Authors@R": "\n    c(\n      person(\"Davis\", \"Vaughan\", email = \"davis@posit.co\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0003-4777-038X\")),\n      person(\"Jim\",\"Hester\", role = \"aut\", comment = c(ORCID = \"0000-0002-2739-7082\")),\n      person(\"Romain\", \"François\", role = \"aut\", comment = c(ORCID = \"0000-0002-2444-4226\")),\n      person(\"Benjamin\", \"Kietzman\", role = \"ctb\"),\n      person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n    )",
+        "Description": "Provides a header only, C++11 interface to R's C\n    interface.  Compared to other approaches 'cpp11' strives to be safe\n    against long jumps from the C API as well as C++ exceptions, conform\n    to normal R function semantics and supports interaction with 'ALTREP'\n    vectors.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://cpp11.r-lib.org, https://github.com/r-lib/cpp11",
+        "BugReports": "https://github.com/r-lib/cpp11/issues",
+        "Depends": "R (>= 4.0.0)",
+        "Suggests": "bench, brio, callr, cli, covr, decor, desc, ggplot2, glue,\nknitr, lobstr, mockery, progress, rmarkdown, scales, Rcpp,\ntestthat (>= 3.2.0), tibble, utils, vctrs, withr",
+        "VignetteBuilder": "knitr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/testthat/edition": "3",
+        "Config/Needs/cpp11/cpp_register": "brio, cli, decor, desc, glue, tibble,\nvctrs",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.2",
+        "NeedsCompilation": "no",
+        "Packaged": "2025-03-03 22:24:28 UTC; davis",
+        "Author": "Davis Vaughan [aut, cre] (<https://orcid.org/0000-0003-4777-038X>),\n  Jim Hester [aut] (<https://orcid.org/0000-0002-2739-7082>),\n  Romain François [aut] (<https://orcid.org/0000-0002-2444-4226>),\n  Benjamin Kietzman [ctb],\n  Posit Software, PBC [cph, fnd]",
+        "Maintainer": "Davis Vaughan <davis@posit.co>",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-03-03 23:20:02 UTC",
+        "Built": "R 4.5.0; ; 2025-03-31 21:45:30 UTC; unix"
+      }
+    },
     "digest": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -373,6 +402,34 @@
         "Date/Publication": "2025-04-12 10:40:02 UTC",
         "Built": "R 4.5.0; aarch64-apple-darwin20; 2025-04-12 11:59:24 UTC; unix",
         "Archs": "fs.so.dSYM"
+      }
+    },
+    "generics": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "generics",
+        "Title": "Common S3 Generics not Provided by Base R Methods Related to\nModel Fitting",
+        "Version": "0.1.4",
+        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0003-4757-117X\")),\n    person(\"Max\", \"Kuhn\", , \"max@posit.co\", role = \"aut\"),\n    person(\"Davis\", \"Vaughan\", , \"davis@posit.co\", role = \"aut\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"),\n           comment = c(ROR = \"https://ror.org/03wc8by49\"))\n  )",
+        "Description": "In order to reduce potential package dependencies and\n    conflicts, generics provides a number of commonly used S3 generics.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://generics.r-lib.org, https://github.com/r-lib/generics",
+        "BugReports": "https://github.com/r-lib/generics/issues",
+        "Depends": "R (>= 3.6)",
+        "Imports": "methods",
+        "Suggests": "covr, pkgload, testthat (>= 3.0.0), tibble, withr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/testthat/edition": "3",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.2",
+        "NeedsCompilation": "no",
+        "Packaged": "2025-05-09 18:17:41 UTC; hadleywickham",
+        "Author": "Hadley Wickham [aut, cre] (ORCID:\n    <https://orcid.org/0000-0003-4757-117X>),\n  Max Kuhn [aut],\n  Davis Vaughan [aut],\n  Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
+        "Maintainer": "Hadley Wickham <hadley@posit.co>",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-05-09 23:50:06 UTC",
+        "Built": "R 4.5.0; ; 2025-05-10 00:42:34 UTC; unix"
       }
     },
     "glue": {
@@ -634,6 +691,41 @@
         "Repository": "CRAN",
         "Date/Publication": "2023-11-07 10:10:10 UTC",
         "Built": "R 4.5.0; ; 2025-01-21 08:20:52 UTC; unix"
+      }
+    },
+    "lubridate": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Type": "Package",
+        "Package": "lubridate",
+        "Title": "Make Dealing with Dates a Little Easier",
+        "Version": "1.9.4",
+        "Authors@R": "c(\n    person(\"Vitalie\", \"Spinu\", , \"spinuvit@gmail.com\", role = c(\"aut\", \"cre\")),\n    person(\"Garrett\", \"Grolemund\", role = \"aut\"),\n    person(\"Hadley\", \"Wickham\", role = \"aut\"),\n    person(\"Davis\", \"Vaughan\", role = \"ctb\"),\n    person(\"Ian\", \"Lyttle\", role = \"ctb\"),\n    person(\"Imanuel\", \"Costigan\", role = \"ctb\"),\n    person(\"Jason\", \"Law\", role = \"ctb\"),\n    person(\"Doug\", \"Mitarotonda\", role = \"ctb\"),\n    person(\"Joseph\", \"Larmarange\", role = \"ctb\"),\n    person(\"Jonathan\", \"Boiser\", role = \"ctb\"),\n    person(\"Chel Hee\", \"Lee\", role = \"ctb\")\n  )",
+        "Maintainer": "Vitalie Spinu <spinuvit@gmail.com>",
+        "Description": "Functions to work with date-times and time-spans: fast and\n    user friendly parsing of date-time data, extraction and updating of\n    components of a date-time (years, months, days, hours, minutes, and\n    seconds), algebraic manipulation on date-time and time-span objects.\n    The 'lubridate' package has a consistent and memorable syntax that\n    makes working with dates easy and fun.",
+        "License": "GPL (>= 2)",
+        "URL": "https://lubridate.tidyverse.org,\nhttps://github.com/tidyverse/lubridate",
+        "BugReports": "https://github.com/tidyverse/lubridate/issues",
+        "Depends": "methods, R (>= 3.2)",
+        "Imports": "generics, timechange (>= 0.3.0)",
+        "Suggests": "covr, knitr, rmarkdown, testthat (>= 2.1.0), vctrs (>= 0.6.5)",
+        "Enhances": "chron, data.table, timeDate, tis, zoo",
+        "VignetteBuilder": "knitr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/testthat/edition": "3",
+        "Encoding": "UTF-8",
+        "LazyData": "true",
+        "RoxygenNote": "7.2.3",
+        "SystemRequirements": "C++11, A system with zoneinfo data (e.g.\n/usr/share/zoneinfo). On Windows the zoneinfo included with R\nis used.",
+        "Collate": "'Dates.r' 'POSIXt.r' 'util.r' 'parse.r' 'timespans.r'\n'intervals.r' 'difftimes.r' 'durations.r' 'periods.r'\n'accessors-date.R' 'accessors-day.r' 'accessors-dst.r'\n'accessors-hour.r' 'accessors-minute.r' 'accessors-month.r'\n'accessors-quarter.r' 'accessors-second.r' 'accessors-tz.r'\n'accessors-week.r' 'accessors-year.r' 'am-pm.r' 'time-zones.r'\n'numeric.r' 'coercion.r' 'constants.r' 'cyclic_encoding.r'\n'data.r' 'decimal-dates.r' 'deprecated.r' 'format_ISO8601.r'\n'guess.r' 'hidden.r' 'instants.r' 'leap-years.r'\n'ops-addition.r' 'ops-compare.r' 'ops-division.r'\n'ops-integer-division.r' 'ops-m+.r' 'ops-modulo.r'\n'ops-multiplication.r' 'ops-subtraction.r' 'package.r'\n'pretty.r' 'round.r' 'stamp.r' 'tzdir.R' 'update.r' 'vctrs.R'\n'zzz.R'",
+        "NeedsCompilation": "yes",
+        "Packaged": "2024-12-07 23:41:45 UTC; vitalie",
+        "Author": "Vitalie Spinu [aut, cre],\n  Garrett Grolemund [aut],\n  Hadley Wickham [aut],\n  Davis Vaughan [ctb],\n  Ian Lyttle [ctb],\n  Imanuel Costigan [ctb],\n  Jason Law [ctb],\n  Doug Mitarotonda [ctb],\n  Joseph Larmarange [ctb],\n  Jonathan Boiser [ctb],\n  Chel Hee Lee [ctb]",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-12-08 12:10:02 UTC",
+        "Built": "R 4.5.0; aarch64-apple-darwin20; 2025-01-21 08:26:10 UTC; unix",
+        "Archs": "lubridate.so.dSYM"
       }
     },
     "magrittr": {
@@ -1100,6 +1192,34 @@
         "Archs": "sourcetools.so.dSYM"
       }
     },
+    "timechange": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "timechange",
+        "Title": "Efficient Manipulation of Date-Times",
+        "Version": "0.3.0",
+        "Authors@R": "c(person(\"Vitalie\", \"Spinu\", email = \"spinuvit@gmail.com\", role = c(\"aut\", \"cre\")),\n             person(\"Google Inc.\", role = c(\"ctb\", \"cph\")))",
+        "Description": "Efficient routines for manipulation of date-time objects while\n   accounting for time-zones and daylight saving times. The package includes\n   utilities for updating of date-time components (year, month, day etc.),\n   modification of time-zones, rounding of date-times, period addition and\n   subtraction etc. Parts of the 'CCTZ' source code, released under the Apache\n   2.0 License, are included in this package. See\n   <https://github.com/google/cctz> for more details.",
+        "Depends": "R (>= 3.3)",
+        "License": "GPL (>= 3)",
+        "Encoding": "UTF-8",
+        "LinkingTo": "cpp11 (>= 0.2.7)",
+        "Suggests": "testthat (>= 0.7.1.99), knitr",
+        "SystemRequirements": "A system with zoneinfo data (e.g.\n/usr/share/zoneinfo) as well as a recent-enough C++11 compiler\n(such as g++-4.8 or later). On Windows the zoneinfo included\nwith R is used.",
+        "BugReports": "https://github.com/vspinu/timechange/issues",
+        "URL": "https://github.com/vspinu/timechange/",
+        "RoxygenNote": "7.2.1",
+        "NeedsCompilation": "yes",
+        "Packaged": "2024-01-18 08:57:24 UTC; vspinu",
+        "Author": "Vitalie Spinu [aut, cre],\n  Google Inc. [ctb, cph]",
+        "Maintainer": "Vitalie Spinu <spinuvit@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-01-18 09:20:02 UTC",
+        "Built": "R 4.5.0; aarch64-apple-darwin20; 2025-01-26 08:44:27 UTC; unix",
+        "Archs": "timechange.so.dSYM"
+      }
+    },
     "tinytex": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1267,728 +1387,59 @@
     }
   },
   "files": {
-    ".github/workflows/deploy-app.yaml": {
-      "checksum": "9abcde7692e919ca744b99ddcc2262a9"
-    },
     ".Rbuildignore": {
       "checksum": "dc21cf953d2a2a5bc3e773a6424aca5a"
     },
     "app.R": {
-      "checksum": "87d1e48f3d097cec6f6b6b2c188ffab3"
-    },
-    "custom.typ": {
-      "checksum": "51ca98b8e402db1246f34f8aedba2c28"
-    },
-    "faithful.csv": {
-      "checksum": "9cff3101135876578de6d7a3b73a9aaa"
+      "checksum": "cba0f4d1393a07af0a068d4601b7005a"
     },
     "LICENSE": {
       "checksum": "3aeb08a6182a2f534ea3cad4ed7f303b"
     },
     "report_template.docx": {
-      "checksum": "b1ca0c65aa0698f8c29622f09b4c11b1"
+      "checksum": "ad7f9c8da82bc568d6e8d6d979ae7899"
     },
     "report_template.html": {
       "checksum": "f2c560f24f101c27a2b715a68417c868"
     },
     "report_template.pdf": {
-      "checksum": "53646ce1c6439a1442e71dbce78e5b2c"
+      "checksum": "128c0b5f0704007285f2a50b9a45effe"
     },
     "report_template.qmd": {
-      "checksum": "14f01df9640c7dd0f1efc78fdd9db741"
+      "checksum": "772f81e89ec98b96612db0798dd21ae1"
     },
-    "site/app.json": {
-      "checksum": "29c83caff611bd2f3767f0b8af62cf07"
+    "scripts/about_UI.R": {
+      "checksum": "62fae5b27a49cdc7e30c676290efcaf5"
     },
-    "site/edit/index.html": {
-      "checksum": "4752dc2dd0b23ac5bd1bbb14f7ace61e"
+    "scripts/download_handler.R": {
+      "checksum": "b3e3a2e396cd30fb53c8d2c67123fdb8"
     },
-    "site/index.html": {
-      "checksum": "8ed1a4a14774451f5b5f07811cd64b91"
+    "scripts/general_UI.R": {
+      "checksum": "3f05b433aa812783b47d2aee935eb3c1"
     },
-    "site/shinylive-sw.js": {
-      "checksum": "91385ac0faf01c29c38fab73bba9d083"
+    "scripts/intro_UI.R": {
+      "checksum": "07837a6eebe03feccb9c49855cb4bab1"
     },
-    "site/shinylive/browser-OYYBATHK.js": {
-      "checksum": "bd01b2dc4d81e19efd12916e62666395"
+    "scripts/sidebar_UI.R": {
+      "checksum": "7a359d2758cc6fd00eee76ab45e94835"
     },
-    "site/shinylive/browser-YJT5PK6V.js": {
-      "checksum": "28ee6a9b82141a566083aaa2fb3ceea6"
+    "scripts/specification_UI.R": {
+      "checksum": "55583702dccee5f8d78013f0e97eaec8"
     },
-    "site/shinylive/chunk-O5P2LFOG.js": {
-      "checksum": "9e5a9602e7526ff41074958eeb0afe13"
+    "scripts/specs_general_UI.R": {
+      "checksum": "4f0759b93db6e59c69f163d1113956ce"
     },
-    "site/shinylive/chunk-PHWSSKUM.js": {
-      "checksum": "9e2c04e3ce832f1bef86bdf82cc5f563"
+    "scripts/specs_hardware_UI.R": {
+      "checksum": "547041ad99f6e8dcf5d605be14340772"
     },
-    "site/shinylive/Editor.css": {
-      "checksum": "ac1198334af86cb000fe073c550bd74a"
+    "scripts/specs_other_UI.R": {
+      "checksum": "00c43f172b44994712a5807f9064053c"
     },
-    "site/shinylive/Editor.js": {
-      "checksum": "c8b2465c79ef2a63b7ccd5002c51934b"
+    "scripts/specs_software_UI.R": {
+      "checksum": "1a37da489833aa06662e6894e68429da"
     },
-    "site/shinylive/load-shinylive-sw.js": {
-      "checksum": "ef2a90c98a9716e0988b1a31bbfad2e9"
-    },
-    "site/shinylive/lzstring-worker.js": {
-      "checksum": "5c9d533a54fae07d12252ec314fd0bc4"
-    },
-    "site/shinylive/pyodide-worker.js": {
-      "checksum": "32ed2f512a3484fbe4ed801c5c9a9518"
-    },
-    "site/shinylive/run-python-blocks.js": {
-      "checksum": "284bce30428215fc78b40e87d87751c9"
-    },
-    "site/shinylive/shinylive.css": {
-      "checksum": "2191f7bef7b5af50ba71a7e7c8b099e6"
-    },
-    "site/shinylive/shinylive.js": {
-      "checksum": "111617451cf5fa791943e2fd8be3523b"
-    },
-    "site/shinylive/SourceSansPro-Regular.otf-PVQ5ZP77.woff2": {
-      "checksum": "0448fda3606e6dc571f763223e78861a"
-    },
-    "site/shinylive/style-resets.css": {
-      "checksum": "326179a3af08325314a9f92ef53b7b20"
-    },
-    "site/shinylive/webr/esbuild.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/library.data.gz": {
-      "checksum": "3fd7111f335906871c37a3deaca4ddf0"
-    },
-    "site/shinylive/webr/library.js.metadata": {
-      "checksum": "22c3351a15690195ae61d17e0a1b851f"
-    },
-    "site/shinylive/webr/libRblas.so": {
-      "checksum": "95d021b4cd5f74a6abbee092a2de30bc"
-    },
-    "site/shinylive/webr/libRlapack.so": {
-      "checksum": "2061ea193621976d961a0421ef431f56"
-    },
-    "site/shinylive/webr/packages/bsicons/bsicons_0.1.2.tgz": {
-      "checksum": "33e04365047bd2a509e921ce22acc35f"
-    },
-    "site/shinylive/webr/packages/dplyr/dplyr_1.1.4.tgz": {
-      "checksum": "234970f116f17152c1ee859863f20770"
-    },
-    "site/shinylive/webr/packages/evaluate/evaluate_1.0.3.tgz": {
-      "checksum": "978e4450cf81041a071af20d3ab80421"
-    },
-    "site/shinylive/webr/packages/fansi/fansi_1.0.6.tgz": {
-      "checksum": "79e638d445ce9ac1ffc3b095a22adba7"
-    },
-    "site/shinylive/webr/packages/generics/generics_0.1.3.tgz": {
-      "checksum": "7ea35b0a5c08bf06fe9d3a45add2be8f"
-    },
-    "site/shinylive/webr/packages/highr/highr_0.11.tgz": {
-      "checksum": "1686e200d41415cac82328d42f1dd839"
-    },
-    "site/shinylive/webr/packages/knitr/knitr_1.50.tgz": {
-      "checksum": "dd42c547475f975d4ca8a86dcec93832"
-    },
-    "site/shinylive/webr/packages/metadata.rds": {
-      "checksum": "9165e98b746020fa4e1065ddc905c56b"
-    },
-    "site/shinylive/webr/packages/pillar/pillar_1.10.2.tgz": {
-      "checksum": "8b3adf1d1681252ef78cd8ec905f74a1"
-    },
-    "site/shinylive/webr/packages/pkgconfig/pkgconfig_2.0.3.tgz": {
-      "checksum": "8ced9ddc8205b9302be9494462f2aaa2"
-    },
-    "site/shinylive/webr/packages/processx/processx_3.8.6.tgz": {
-      "checksum": "fc0fb78e882068cd0980e9837d4e9aaa"
-    },
-    "site/shinylive/webr/packages/ps/ps_1.9.1.tgz": {
-      "checksum": "83d0b7f194e791ecb178da43b78141f9"
-    },
-    "site/shinylive/webr/packages/purrr/purrr_1.0.4.tgz": {
-      "checksum": "4a3c5c06f9ef0e678725b681fa8353c6"
-    },
-    "site/shinylive/webr/packages/quarto/quarto_1.4.4.tgz": {
-      "checksum": "26ff2d39f1a0bcb493071754d0844f3f"
-    },
-    "site/shinylive/webr/packages/rmarkdown/rmarkdown_2.29.tgz": {
-      "checksum": "e187089761a8c486cbaa5a60ca5b76dc"
-    },
-    "site/shinylive/webr/packages/rstudioapi/rstudioapi_0.17.1.tgz": {
-      "checksum": "e412f043e0a1ce036b15a4580e590c01"
-    },
-    "site/shinylive/webr/packages/shinyWidgets/shinyWidgets_0.9.0.tgz": {
-      "checksum": "68ab908fefdb9d7d3484bef66641158a"
-    },
-    "site/shinylive/webr/packages/stringi/stringi_1.8.7.tgz": {
-      "checksum": "6358733c3e8cf26b2af7a7e79c06f52c"
-    },
-    "site/shinylive/webr/packages/stringr/stringr_1.5.1.tgz": {
-      "checksum": "cdc7e8f63d604e78d8fda5728ad7bc48"
-    },
-    "site/shinylive/webr/packages/tibble/tibble_3.2.1.tgz": {
-      "checksum": "f260889ac236343961aa5824c1d3b9ee"
-    },
-    "site/shinylive/webr/packages/tidyr/tidyr_1.3.1.tgz": {
-      "checksum": "2f47b130b934853b59fa5602e195ca40"
-    },
-    "site/shinylive/webr/packages/tidyselect/tidyselect_1.2.1.tgz": {
-      "checksum": "005e0028782975e3432424bc448f3bf6"
-    },
-    "site/shinylive/webr/packages/tinytex/tinytex_0.57.tgz": {
-      "checksum": "f0d6f0e848620cf096fd5fbb2c292988"
-    },
-    "site/shinylive/webr/packages/utf8/utf8_1.2.4.tgz": {
-      "checksum": "6eb30bbf4142440deaa6d676f150f03e"
-    },
-    "site/shinylive/webr/packages/vctrs/vctrs_0.6.5.tgz": {
-      "checksum": "7b6dc0410742c8ee27832b49bc5a3892"
-    },
-    "site/shinylive/webr/packages/xfun/xfun_0.52.tgz": {
-      "checksum": "a3918333bb0d419f0562be077719ba7a"
-    },
-    "site/shinylive/webr/packages/yaml/yaml_2.3.10.tgz": {
-      "checksum": "ac57ec9431c0df88a1acdbe8a8a8fa3b"
-    },
-    "site/shinylive/webr/R.bin.js": {
-      "checksum": "3f848b680dabe7729891d8e31fde39df"
-    },
-    "site/shinylive/webr/R.bin.js.bak": {
-      "checksum": "fb9b34092c91cbf78da454c851abd4ab"
-    },
-    "site/shinylive/webr/R.bin.wasm": {
-      "checksum": "65c0bb88e8bb52d4abd72d65d08c350a"
-    },
-    "site/shinylive/webr/repl/App.d.ts": {
-      "checksum": "6f52674a713dc1a91ec7ceb6661ae83f"
-    },
-    "site/shinylive/webr/repl/components/Editor.d.ts": {
-      "checksum": "1600d80cccab2f3d43742373e9e605f3"
-    },
-    "site/shinylive/webr/repl/components/Files.d.ts": {
-      "checksum": "85184877fbba6a5cf7cdeac40f2698b1"
-    },
-    "site/shinylive/webr/repl/components/Plot.d.ts": {
-      "checksum": "132d88e78dac188518bfc3e9805e635d"
-    },
-    "site/shinylive/webr/repl/components/Terminal.d.ts": {
-      "checksum": "1848af6209f7312499f43197fdaf5ac7"
-    },
-    "site/shinylive/webr/repl/components/utils.d.ts": {
-      "checksum": "b9f9171cc64739ca15d789bbf6529271"
-    },
-    "site/shinylive/webr/tests/packages/webr.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/chan/channel-postmessage.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/console.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/error.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/mount.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/proxy.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/robj.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/utils.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/webr-main.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/webr-r.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/tests/webR/webr-worker.test.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
-    },
-    "site/shinylive/webr/vfs/etc/fonts/fonts.conf": {
-      "checksum": "6300427804c4677462c2b187d9e2d3d3"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/doc.data.gz": {
-      "checksum": "189bf90daf482045c04d29c78fc3efa1"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/doc.js.metadata": {
-      "checksum": "a747595f2c53bcba0c57a0c1534499a3"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/base/demo.data.gz": {
-      "checksum": "079e9d73453dcd1ea1f860226498a417"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/base/demo.js.metadata": {
-      "checksum": "bf73c10ef38977281a0a823054ff08ab"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/base/help.data.gz": {
-      "checksum": "1e948c99be12b0befdc5715f6834a16f"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/base/help.js.metadata": {
-      "checksum": "7821f4c7805e6a2fe5e91cb51dc090c4"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/base/html.data.gz": {
-      "checksum": "f425bcccc2d94280957d57180f9b2a59"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/base/html.js.metadata": {
-      "checksum": "7ba454753f5b85cac74f2b66b97c8247"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/compiler/help.data.gz": {
-      "checksum": "892f3f5a74e34a7b5005bea4ffa9893d"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/compiler/help.js.metadata": {
-      "checksum": "03fadda87f6131bf311bd0f99b3d2636"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/compiler/html.data.gz": {
-      "checksum": "bb156e5e7524e9ca72bc5aa0c7d30bc2"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/compiler/html.js.metadata": {
-      "checksum": "1af0681672853159028ccdbaecd4433d"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/compiler/tests.data.gz": {
-      "checksum": "51f97dcedd30c0e72f37adabedcf79d8"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/compiler/tests.js.metadata": {
-      "checksum": "1868ff2023f0a715f586b0b997323536"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/datasets/help.data.gz": {
-      "checksum": "6aac044f9f08247f662e0ed2d869196f"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/datasets/help.js.metadata": {
-      "checksum": "216cc330dc992bbdbafe6d0fcfb71eec"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/datasets/html.data.gz": {
-      "checksum": "d2423df8ff4acc40625aa656441f9d22"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/datasets/html.js.metadata": {
-      "checksum": "710992e6c0e35f1fa2cb427caa7ddc33"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/graphics/demo.data.gz": {
-      "checksum": "a77fea69b2a3ac26c42a4bc5e53e4158"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/graphics/demo.js.metadata": {
-      "checksum": "641dd3b6e318c9bd7cd044a7a96735c9"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/graphics/help.data.gz": {
-      "checksum": "a0b8a84e305c9c6431f85b0d5d6423bb"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/graphics/help.js.metadata": {
-      "checksum": "fd3d6c396163ddef881566c315b0b91f"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/graphics/html.data.gz": {
-      "checksum": "892c9f0de89ebacf39417aec1721c5a5"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/graphics/html.js.metadata": {
-      "checksum": "eaa7381c21f495d1e2a0d0b2a2a19a02"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/afm.data.gz": {
-      "checksum": "df161062d0d89fe9c8750b95603eb414"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/afm.js.metadata": {
-      "checksum": "9cba9a4535baef593b96eed0003bc03d"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/demo.data.gz": {
-      "checksum": "9dc9ce1b8e0be41a01d0c47665420b90"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/demo.js.metadata": {
-      "checksum": "8883d9a5770c131cd37e491a66d5f2d9"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/enc.data.gz": {
-      "checksum": "a6d8fe92dffe9e6b562e731189119253"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/enc.js.metadata": {
-      "checksum": "516864001be8080cb4e938bcfeb1366f"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/fonts.data.gz": {
-      "checksum": "daa6e78e427d8ffceb3fb6852b7756b0"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/fonts.js.metadata": {
-      "checksum": "7b3727b93d155fd5770e87539d88fa45"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/help.data.gz": {
-      "checksum": "5fe1c4e943cca31575fb8d58558f672f"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/help.js.metadata": {
-      "checksum": "c84d442aacf0391a80bf932f2cea4b17"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/html.data.gz": {
-      "checksum": "7b1d130c5132c7e6b694ba530113f749"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/html.js.metadata": {
-      "checksum": "a00fc1598449bf5fed1b8d1144911544"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/libs.data.gz": {
-      "checksum": "b6bee4ccc1199b69c68d861caeb4f0d3"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/libs.js.metadata": {
-      "checksum": "e441f909946d13ea1a9a290af577c64b"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/tests.data.gz": {
-      "checksum": "5291b3572f9586c9f4f19d3bb0886c32"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grDevices/tests.js.metadata": {
-      "checksum": "4f7ebfcae6fdfbf210bacfb13bf11ca6"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grid/doc.data.gz": {
-      "checksum": "2bd0664745ef82a32fec3a48443f51f8"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grid/doc.js.metadata": {
-      "checksum": "6b2e9947c2bdf1fab22b0d8c6fae1503"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grid/help.data.gz": {
-      "checksum": "3feb6f1df71b8c5a5ba4ae91ce380d67"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grid/help.js.metadata": {
-      "checksum": "734d1214108f1d703da68c5ee060d623"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grid/html.data.gz": {
-      "checksum": "f1e5c78d950f42b934035adf28ec04a1"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grid/html.js.metadata": {
-      "checksum": "b67fe52dc201a1bb07292047aba4fd77"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grid/tests.data.gz": {
-      "checksum": "df15969c564c2b8345c1c70847f47801"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/grid/tests.js.metadata": {
-      "checksum": "08fe5a2551197285584345a51d8c2acf"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/methods/help.data.gz": {
-      "checksum": "e65076512220527f7711ffa2981eba2e"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/methods/help.js.metadata": {
-      "checksum": "2240c33147f18682592c6868194635f8"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/methods/html.data.gz": {
-      "checksum": "e39b1c6e8a0a1f50815046f4e2fc916e"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/methods/html.js.metadata": {
-      "checksum": "8f39d45134f44a72b97a909ad582543c"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/methods/tests.data.gz": {
-      "checksum": "9285d6323510ab932c29a50768d5c921"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/methods/tests.js.metadata": {
-      "checksum": "e8b3513f6be14ab96d6f1ae38d2edf15"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/parallel.data.gz": {
-      "checksum": "c9a5c9c835fb279ccacb099d4e99b291"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/parallel.js.metadata": {
-      "checksum": "18f67a0b32d58e57fb0fb3ca4269d5eb"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/splines/help.data.gz": {
-      "checksum": "aa11e5368abe19cf238b8c2bfc31e3df"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/splines/help.js.metadata": {
-      "checksum": "1785274cf08329875a1874aac92f7cf8"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/splines/html.data.gz": {
-      "checksum": "609ff8b7f011f13778022d94fa6c2ff1"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/splines/html.js.metadata": {
-      "checksum": "23de4b5bbae29ac86d2109caefa041da"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/splines/tests.data.gz": {
-      "checksum": "ab09685305595a2e40acf3079b90750b"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/splines/tests.js.metadata": {
-      "checksum": "a0c414570cc4738b41a96d5dfd654c25"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats/demo.data.gz": {
-      "checksum": "c2583264c4a28cb8177917fe0cd49d7e"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats/demo.js.metadata": {
-      "checksum": "84af5ae1632e5e6b4a99991e670c8664"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats/help.data.gz": {
-      "checksum": "77fdf8728cdcc04d9d0158dbe812de34"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats/help.js.metadata": {
-      "checksum": "396344b6b9eb2f33df4f306bb67e16e0"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats/html.data.gz": {
-      "checksum": "d93193a37fac766915c5043690bc7c5a"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats/html.js.metadata": {
-      "checksum": "c6d3e1209d8bb2346e4ccbaee02bb1f7"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats/tests.data.gz": {
-      "checksum": "f4989f477b7fa6cfcfc9de9e11448a91"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats/tests.js.metadata": {
-      "checksum": "9c2e24ce4bfddc081e54a338e201a9f5"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats4/help.data.gz": {
-      "checksum": "07575676825ac21e03a81110e0a0b1ea"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats4/help.js.metadata": {
-      "checksum": "0d6776e8af33b5c341739cfd73ae1f1d"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats4/html.data.gz": {
-      "checksum": "71b6b1202a6dec656914d0d258b48c3e"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats4/html.js.metadata": {
-      "checksum": "70df2ee502fe990362b1fba5174c96fd"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats4/tests.data.gz": {
-      "checksum": "c7f001b4ef53b5c7e67379dc0f0c659a"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/stats4/tests.js.metadata": {
-      "checksum": "73be0b9593e90df45b9c9a2aaf482944"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/tcltk.data.gz": {
-      "checksum": "332db24b1aeae594172e76c773e8f7c8"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/tcltk.js.metadata": {
-      "checksum": "4938018ba3b0408125c981b463559687"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/tools/help.data.gz": {
-      "checksum": "07008792bfd607da56dc1e999b1f2ef4"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/tools/help.js.metadata": {
-      "checksum": "662db5c182af2f5ec73a9ce034b630dd"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/tools/html.data.gz": {
-      "checksum": "d48125a763a53c776c80ce9dc52fd07e"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/tools/html.js.metadata": {
-      "checksum": "cb1fcd61384800f6946a8a4906147029"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/tools/tests.data.gz": {
-      "checksum": "d777249e7345568df27e21c8725d495f"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/tools/tests.js.metadata": {
-      "checksum": "e4af7723e1ac91fd4806cb79170f5b29"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/translations.data.gz": {
-      "checksum": "965786e65d3832ede577a60cd62db45f"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/translations.js.metadata": {
-      "checksum": "6129faae22842c1e952292bc648c969c"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/translations/DESCRIPTION": {
-      "checksum": "8c74fc51c182b93b45d7c801202cb889"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/doc.data.gz": {
-      "checksum": "f5b7b9b59b10d25ab6c4e50e54c62c43"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/doc.js.metadata": {
-      "checksum": "f6447a41d69b94c4f927b3679a37f083"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/help.data.gz": {
-      "checksum": "e7fd6f7b1dcac046ecd5e4ddaa6a806b"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/help.js.metadata": {
-      "checksum": "3f8de1d5bc5e73e5a473c299fd6bb0f1"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/html.data.gz": {
-      "checksum": "3f98a63d008ffe03e0d86b12b302103d"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/html.js.metadata": {
-      "checksum": "64c759721282356f80bb4d9207345d83"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/misc.data.gz": {
-      "checksum": "ef83c5b22ee9c1ca2f7005fd8ecf3573"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/misc.js.metadata": {
-      "checksum": "231cffe9bf0512b4d9c176905a34b29a"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/tests.data.gz": {
-      "checksum": "841f327e5a68871acee4808794558805"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/utils/tests.js.metadata": {
-      "checksum": "a7ad4b7ae6304dafa090f47ceca16654"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/webr/help.data.gz": {
-      "checksum": "e80faaaa1ff33aa0dc04c8d4382a8497"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/webr/help.js.metadata": {
-      "checksum": "4dce600d60577106591348a2bef788a3"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/webr/html.data.gz": {
-      "checksum": "2764ca8b9fd90daca2676fc3c5cce64c"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/library/webr/html.js.metadata": {
-      "checksum": "c0caed8b8a6aba675811429c0377791b"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/share.data.gz": {
-      "checksum": "dcf0d1622c26f86c04d467cf60850b74"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/share.js.metadata": {
-      "checksum": "880528e2b90aa47ff60af9b5eea3e3d7"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/tests.data.gz": {
-      "checksum": "d99a8113a290a49f3c47096fb0baf095"
-    },
-    "site/shinylive/webr/vfs/usr/lib/R/tests.js.metadata": {
-      "checksum": "24cd1ba3bb93e0aa2e56659ca4868c86"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSans-Bold.ttf": {
-      "checksum": "5959e861b45905afb3f5659b66e5a43b"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSans-BoldItalic.ttf": {
-      "checksum": "258746b7854392bcfd5531c3110674a1"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSans-Italic.ttf": {
-      "checksum": "b650143d06ff517e7482b6cbecb057b7"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSans-Regular.ttf": {
-      "checksum": "556ad26a9ff8afce0ea47896b298f4bf"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSansMono-Bold.ttf": {
-      "checksum": "e03f7c60925be06f6037ab22ceef6534"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSansMono-Regular.ttf": {
-      "checksum": "76bc9dee5de9d62cf1fff05a85b6d463"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSerif-Bold.ttf": {
-      "checksum": "ffdf273d3e86678a428bfe16de5793e5"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSerif-BoldItalic.ttf": {
-      "checksum": "0036797788d93b0f0cae86eec0040b1b"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSerif-Italic.ttf": {
-      "checksum": "4c488bfae3b56f7f85ddd8af6829accc"
-    },
-    "site/shinylive/webr/vfs/usr/share/fonts/NotoSerif-Regular.ttf": {
-      "checksum": "788141e28255aec7da6d1f5444ddad4c"
-    },
-    "site/shinylive/webr/vfs/usr/share/gdal.data.gz": {
-      "checksum": "27c43c9d7827dd67c6f388c8e830038c"
-    },
-    "site/shinylive/webr/vfs/usr/share/gdal.js.metadata": {
-      "checksum": "40b6850183b35a195464ad6080f62917"
-    },
-    "site/shinylive/webr/vfs/usr/share/proj.data.gz": {
-      "checksum": "834c143058be217e670c48ce1e77e206"
-    },
-    "site/shinylive/webr/vfs/usr/share/proj.js.metadata": {
-      "checksum": "2e9339010891c4cb0323d7e6f667ff6b"
-    },
-    "site/shinylive/webr/vfs/usr/share/udunits.data.gz": {
-      "checksum": "f8f64c29a93a151378929b6c882a7238"
-    },
-    "site/shinylive/webr/vfs/usr/share/udunits.js.metadata": {
-      "checksum": "6ee5406e67a645a811abd58df92bd11f"
-    },
-    "site/shinylive/webr/vfs/var/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le32d8.cache-7": {
-      "checksum": "51aeeb054a5fd6fe2fe2a8d7a932210b"
-    },
-    "site/shinylive/webr/vfs/var/cache/fontconfig/CACHEDIR.TAG": {
-      "checksum": "edad2301cde055e29b0d30b8d2f4b724"
-    },
-    "site/shinylive/webr/webr-serviceworker.js": {
-      "checksum": "6876da0f1da4919269b12939fbf31674"
-    },
-    "site/shinylive/webr/webr-serviceworker.js.map": {
-      "checksum": "a55aef60b46af74b1411d95d8ad4d6d6"
-    },
-    "site/shinylive/webr/webr-serviceworker.mjs": {
-      "checksum": "6353b631c6f6b280eca93a4f41bd4d80"
-    },
-    "site/shinylive/webr/webr-serviceworker.mjs.map": {
-      "checksum": "8ecb29b11c5f163ab392598321386c28"
-    },
-    "site/shinylive/webr/webr-worker.js": {
-      "checksum": "240bb8f5a8f471bcb001321a70f1b689"
-    },
-    "site/shinylive/webr/webr-worker.js.map": {
-      "checksum": "bd2f258304702c1299c294db28d6ebb1"
-    },
-    "site/shinylive/webr/webr.cjs": {
-      "checksum": "0e48a22131473014da8d8f908c5239cf"
-    },
-    "site/shinylive/webr/webr.cjs.map": {
-      "checksum": "5f127717f06f47da540986cf752ce4dc"
-    },
-    "site/shinylive/webr/webr.mjs": {
-      "checksum": "f300831240837ff242f2e8ddfd691a40"
-    },
-    "site/shinylive/webr/webr.mjs.map": {
-      "checksum": "e27293bf312150fc231ca6c7fd649591"
-    },
-    "site/shinylive/webr/webR/chan/channel-common.d.ts": {
-      "checksum": "fec049491a432f1ccbf3ce024bba3baa"
-    },
-    "site/shinylive/webr/webR/chan/channel-postmessage.d.ts": {
-      "checksum": "c6a8f78fab628134b7180ff5e59a4f64"
-    },
-    "site/shinylive/webr/webR/chan/channel-service.d.ts": {
-      "checksum": "6b35591f5de7e812bf9227d55a8b35e4"
-    },
-    "site/shinylive/webr/webR/chan/channel-shared.d.ts": {
-      "checksum": "e56a605f994592473e1c84ec5f58800c"
-    },
-    "site/shinylive/webr/webR/chan/channel.d.ts": {
-      "checksum": "ae565b837db4ae87ba2152b9d961eb22"
-    },
-    "site/shinylive/webr/webR/chan/message.d.ts": {
-      "checksum": "7705b5d065fc7c9ec24c5906bcb3e1e9"
-    },
-    "site/shinylive/webr/webR/chan/queue.d.ts": {
-      "checksum": "88820d2b2237896b22d15da0bb8246ea"
-    },
-    "site/shinylive/webr/webR/chan/serviceworker.d.ts": {
-      "checksum": "6d929e5cd8ad392cfa10734d88c25d67"
-    },
-    "site/shinylive/webr/webR/chan/task-common.d.ts": {
-      "checksum": "5bec41a29d2b750b509fcc4f8a1ed1e0"
-    },
-    "site/shinylive/webr/webR/chan/task-main.d.ts": {
-      "checksum": "f6f605da203f29469a5b4d38b2c0bcce"
-    },
-    "site/shinylive/webr/webR/chan/task-worker.d.ts": {
-      "checksum": "cf6b12ffd3797cb9303bbd190351eb4b"
-    },
-    "site/shinylive/webr/webR/compat.d.ts": {
-      "checksum": "33eda8bd4455ab1b10c7e580db558f45"
-    },
-    "site/shinylive/webr/webR/config.d.ts": {
-      "checksum": "1b90f65c821aed4f4b94346b627b8f61"
-    },
-    "site/shinylive/webr/webR/console.d.ts": {
-      "checksum": "591c23a125e11dcf3dd2e959cfdc06b9"
-    },
-    "site/shinylive/webr/webR/emscripten.d.ts": {
-      "checksum": "53e2792c2840ac195fcddc418a1e92cf"
-    },
-    "site/shinylive/webr/webR/error.d.ts": {
-      "checksum": "f6ab6e58de6eb63a7d7b16aaa48be714"
-    },
-    "site/shinylive/webr/webR/mount.d.ts": {
-      "checksum": "38d8db9f3e2f2af9e5826efbfa1e7762"
-    },
-    "site/shinylive/webr/webR/payload.d.ts": {
-      "checksum": "eb9cd4d5c9df6f2a1a9b20e70e06aa35"
-    },
-    "site/shinylive/webr/webR/proxy.d.ts": {
-      "checksum": "60050c04a4a7bef595d0b8fe6477ca36"
-    },
-    "site/shinylive/webr/webR/robj-main.d.ts": {
-      "checksum": "d01b9ab014e5b5d44f1b52bf6ab177e0"
-    },
-    "site/shinylive/webr/webR/robj-worker.d.ts": {
-      "checksum": "6df4a4fa57fa272f661e797033c6f458"
-    },
-    "site/shinylive/webr/webR/robj.d.ts": {
-      "checksum": "36b1c032d91beb66132e8e21fc21865c"
-    },
-    "site/shinylive/webr/webR/utils-r.d.ts": {
-      "checksum": "8dd57576c21644349c45e562ce9f1f4a"
-    },
-    "site/shinylive/webr/webR/utils.d.ts": {
-      "checksum": "261bb1e9718c734a460306deb79329b9"
-    },
-    "site/shinylive/webr/webR/webr-chan.d.ts": {
-      "checksum": "683480399ea03890693829db6ee60495"
-    },
-    "site/shinylive/webr/webR/webr-main.d.ts": {
-      "checksum": "625d6530fe95580137a5814132436ec2"
-    },
-    "site/shinylive/webr/webR/webr-worker.d.ts": {
-      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    "typst-template.typ": {
+      "checksum": "cf6dfff320763e5c4494bc5b7c447c94"
     },
     "www/logo_banner2.png": {
       "checksum": "770ef2b6457cc69a3d1fe857c5bc1df5"
@@ -1999,8 +1450,8 @@
     "www/logo.png": {
       "checksum": "29624fc00ccf259de858df16d195abb6"
     },
-    "www/report_template.qmd": {
-      "checksum": "b84303b3423ce2a632b1e92532db7532"
+    "www/reference.docx": {
+      "checksum": "f1825fedefa7680465002a0ea51e5ebe"
     }
   },
   "users": null

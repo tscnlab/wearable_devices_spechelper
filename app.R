@@ -4,7 +4,6 @@ library(bslib)
 library(shinyWidgets)
 library(yaml)
 library(lubridate)
-library(shinyBS) 
 
 #load UI components for the intro page
 source("scripts/intro_UI.R")
