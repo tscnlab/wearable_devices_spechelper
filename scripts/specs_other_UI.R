@@ -1,93 +1,115 @@
-other_specs <- tagList(
+other_specs <- function() {
+  tagList(
+  
   h3("Budget"),
   layout_column_wrap(
     style = css(grid_template_columns = "6fr 3fr 6fr"),
     numericInput(
-      "other_budget_value",
-      "The maximum available budget",
+      "o_bvalue",
+      "The maximum available budget (including shipping)",
       value = NULL,
       width = "100%"
     ),
     textInput(
-      "other_budget_currency",
+      "o_bcurr",
       label = "Currency",
       value = NULL,
-      width = "100%"
+      width = "100%",
+      placeholder = "Enter currency",
     ),
     selectInput(
-      "other_budget_reference",
+      "o_bref",
       label = "Reference", 
       choices = c("per device", "total"),
       width = "100%"
     )
   ),
-  h4("Calibration"),
+  checkboxInput("o_warr",
+                width = "100%",
+                label = tagList("Extended warranty/insurance required", icon("info-circle"))) |> 
+    tooltip("Check if you require additional information from the manufacturer about extended warranty or insurance options"),
+  selectizeInput("o_rent",
+                     label = tagList("Acceptable options", icon("info-circle")),
+                     width = "100%",
+                 multiple = TRUE,
+                     choices = c("One-time purchase", "Rental model", "Subscription model (software)"),
+                     options  = list(placeholder = "What modes of device ownership would be acceptable?")) |> 
+  tooltip(p("One-time purchase means full ownership of hardware and software."), 
+          p("Rental model means you return the devices after an agreed upon time."), 
+          p("Subscription model means that you buy/own the hardware, but that some software services - which need to be specified - are only available with an active subscription. This can include things like more in-depth analysis or cloud-storage.")),
+  h3("Calibration"),  
   numericInput(
-    inputId = "calibration_valid_months",
-    label   = "Calibration validity (months)",
+    inputId = "o_calib",
+    label   = tagList("Minimum required calibration validity (months)", icon("info-circle")),
     value   = NULL,
     min     = 1,
-    step    = 1
+    step    = 1,
+    width = "50%"
+  ) |> 
+  tooltip(
+    "How long (in months) the factory calibration should remain valid before recalibration is required.",
+    placement = "right",
+    options   = list(container = "body")
   ),
-  # bsTooltip(
-  #   id        = "calibration_valid_months",
-  #   title     = "How long (in months) the factory calibration should remain valid before recalibration is required.",
-  #   placement = "right",
-  #   options   = list(container = "body")
-  # ),
-  
-  radioButtons(
-    inputId = "recalibration_method",
-    label   = "Recalibration option/cost",
-    choices = c(
-      "No recalibration needed",
-      "Manufacturer service (paid)",
-      "Manufacturer service (free)",
-      "User recalibrates"
-    ),
-    selected = character(0)
-  ),
-  # bsTooltip(
-  #   id        = "recalibration_method",
-  #   title     = "Select the acceptable recalibration process and whether an extra fee is acceptable.",
-  #   placement = "right",
-  #   options   = list(container = "body")
-  # ),
-  ## Accessories -------------------------------------------------------------
-  h4("Accessories"),
   checkboxInput(
-    inputId = "protective_case",
-    label   = "Protective carrying case required",
-    value   = FALSE
+    inputId = "o_recal",
+    label   = tagList("Recalibration information required", icon("info-circle")),
+    width = "100%",
+    value = FALSE) |> 
+  tooltip(
+    "Check if you require information from the manufacturer about recalibration (cost, procedure, modalities).",
+    options   = list(container = "body")
   ),
-  # bsTooltip(
-  #   id        = "protective_case",
-  #   title     = "Tick if the device must come with a light‑blocking, protective storage case.",
-  #   placement = "right",
-  #   options   = list(container = "body")
-  # ),
+  h3("Miscellaneous"),
+  h5("Shipping"),
+  dateInput(
+    "o_deliv",
+    "By which date will the devices be needed, i.e., delivered?",
+    width = "50%"
+  ),
+  h5("Testing"),
+  checkboxInput(
+    "o_test",
+    "Inquire options for a free test-device for internal assessment",
+    value = FALSE,
+    width = "100%"
+  ),
+  ## Accessories -------------------------------------------------------------
+  h5("Accessories"),
+  checkboxInput(
+    inputId = "o_case",
+    label   = tagList("Protective carrying case required", icon("info-circle")),
+    value   = FALSE,
+    width = "100%"
+  ) |> 
+  tooltip(
+    id        = "protective_case",
+    "Tick if the device must come with a light‑blocking, protective storage case.",
+    placement = "right",
+    options   = list(container = "body")
+  ),
   
   ## Participant Materials ---------------------------------------------------
-  h4("Participant Materials"),
+  h5("Participant Materials"),
   checkboxInput(
-    inputId = "wearer_instructions",
-    label   = "Provide wearer instructions",
+    inputId = "o_instr",
+    label   = tagList("Wearer instructions required", icon("info-circle")),
     value   = FALSE
+  ) |> 
+  tooltip(
+    "If checked, manufacturer must supply easy‑to‑understand instructions suitable for study participants on how to handle the device according to manufacturers specifications.",
+    placement = "right",
+    options   = list(container = "body")
   ),
-  # bsTooltip(
-  #   id        = "wearer_instructions",
-  #   title     = "If checked, manufacturer must supply easy‑to‑understand instructions suitable for study participants.",
-  #   placement = "right",
-  #   options   = list(container = "body")
-  # ),
   conditionalPanel(
-    condition = "input.wearer_instructions == true",
-    selectizeInput(
-      inputId = "instruction_languages",
+    condition = "input.o_instr == true",
+    textInput(
+      inputId = "o_instr_lan",
       label   = "Instruction language(s)",
-      choices = c("English", "German", "Spanish", "French", "Italian", "Chinese", "Japanese", "Other"),
-      multiple = TRUE,
-      options  = list(placeholder = "Select language(s)")
+      width = "100%",
+      placeholder = "Enter language(s)"
     )
   )
   )
+  
+}

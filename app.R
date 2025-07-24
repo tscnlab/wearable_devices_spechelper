@@ -20,6 +20,9 @@ source("scripts/general_UI.R")
 #load function for download handling
 source("scripts/download_handler.R", local = TRUE)
 
+#load string for example
+source("scripts/query_string.R", local = TRUE)
+
 # --- Shiny app -------------------------------------------
 
 # UI ------------
@@ -32,7 +35,7 @@ ui <- function(request) {
   fillable = FALSE,
   nav_spacer(),
   site_introduction,
-  site_specification,
+  site_specification(),
   site_about,
   !!!nav_items,
 )
@@ -56,15 +59,40 @@ server <- function(input, output, session) {
     session$doBookmark()
   })
   
+  observe({
+    # updateQueryString(query_string, mode = "push")
+    cd <- session$clientData
+    example_url <- 
+      paste0(
+        cd$url_protocol,            # "http:" or "https:"
+        "//",
+        cd$url_hostname,            # "my‑server.com"
+        if (nzchar(cd$url_port) && cd$url_port != "80") 
+          paste0(":", cd$url_port)  # ":3838" (blank for default ports)
+        else "",
+        cd$url_pathname,            # "/myapp/"
+        query_string,              # "?a=1&b=two"
+        cd$url_hash_initial         # "#section"
+      )
+    showModal(urlModal(example_url, title = "Copy this link into a new browser window to see an example"))
+    # print(example_url)
+  }) |> bindEvent(input$to_example)
+  
+  observe({
+    showBookmarkUrlModal(url())
+  }) |> bindEvent(input$bookmark_button)
+  
   url <- reactiveVal()
   
-  onBookmarked(updateQueryString)
+  setBookmarkExclude(c("to_example", "to_introduction", "bookmark_button",
+                       "create_docx", "create_pdf", "to_research_guide"))
+  # onBookmarked(updateQueryString)
   onBookmarked(\(x) url(x))
   
   #output handler for PDF
   output$create_pdf <- downloadHandler(
     filename = function() {
-      paste0(Sys.Date(),"_wearable_speclist_", input$general_project_name, ".pdf")
+      paste0(Sys.Date(),"_wearable_speclist_", input$g_pname, ".pdf")
     },
     content = file_preparation("typst", url, input)
   )
@@ -72,17 +100,17 @@ server <- function(input, output, session) {
   #output handler for word
   output$create_docx <- downloadHandler(
     filename = function() {
-      paste0(Sys.Date(),"_wearable_speclist_", input$general_project_name, ".docx")
+      paste0(Sys.Date(),"_wearable_speclist_", input$g_pname, ".docx")
     },
     content = file_preparation("docx", url, input)
   )
   
-  output$storage_days <- renderText({ 
-    req(input$on_device_days, input$hardware_recording_interval)
-    obs_number <- 
-    input$on_device_days * 24*60*60/
-      as.numeric(as.duration(input$hardware_recording_interval))
-    (paste("Storage capacity required for a minimum of", 
+  output$storage_days <- renderText({
+    req(input$h_stor_day, input$h_int)
+    obs_number <-
+    input$h_stor_day * 24*60*60/
+      as.numeric(as.duration(input$h_int))
+    (paste("Storage capacity required for a minimum of",
                strong(obs_number) , "observations"))
     })
   

@@ -1,26 +1,38 @@
-general_specs <- tagList(
+general_specs <- function() {
+  tagList(
   textInput(
-    "general_project_name",
+    "g_pname",
     label = "Project name",
-    placeholder = "short project name, used for the PDF filename",
+    placeholder = "Short project name",
     width = "100%"
   ),
-  selectInput(
-    "general_study_type",
+  selectizeInput(
+    "g_stype",
     "Select the type of study",
-    choices = c("observational", "interventional", "case-control", "cohort"),
+    choices = c("Observational", "Interventional", "Case-control", "Cohort", "Other"),
     multiple = TRUE,
-    width = "100%"
+    width = "100%",
+    options  = list(placeholder = "Select the type of study you require the devices for")
   ),
-  textAreaInput("general_study_description", 
-                label = "Description of the (main) use case", 
-                width = "100%", 
-                rows = 4,
-                placeholder = "please provide a succinct description of the intended use case(s) for the wearables"
+  conditionalPanel(
+  condition = "input.g_stype?.includes('Other')",
+    textInput(
+      inputId = "g_stype_o",
+      label   = "Specify 'other' from previous entry",
+      width = "100%",
+      placeholder = "Enter text"
+    )
   ),
-  numericInput("general_device_number",
-               "How many devices do you require?", 
+  textAreaInput("g_s_desc",
+                label = "Description of the (main) use case",
+                width = "100%",
+                rows = 3,
+                placeholder = "Please provide a succinct description of the intended use case(s) for the wearables. (Long text will break bookmarking in some browsers)"
+  ),
+  numericInput("g_d_num",
+               "How many devices do you require?",
                value = NULL, min = 1, step = 1,
-               width = "100%"
+               width = "50%"
   )
 )
+}

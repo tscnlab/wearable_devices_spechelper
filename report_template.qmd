@@ -23,6 +23,10 @@ params:
 #| echo: false
 input <- readRDS("input_list.rds")
 
+remove_other <- function(x) {
+  x[x != "Other"]
+}
+
 input <- 
   input |> purrr::map(
     ~ {
@@ -30,21 +34,38 @@ input <-
       return("Not specified")}
       if(any(is.na(.x))) {
         return("Not specified")}
+      if(is.character(.x)) {
+      .x <- remove_other(.x)
+      return(.x)
+      }
       return(.x)}
   )
+
+paste_other <- function(x, y) {
+  if(y == "") {
+    return(x)
+  }
+  paste(x, collapse = ", ") |>  paste(y, sep = ", ")
+}
+
+input$general_study_type <- paste_other(input$general_study_type,
+                                        input$general_study_type_other)
+
 ```
 
 ## Preface
 
-This document was generated with the [wearable device specification tool]("https://tscnlab.shinyapps.io/wearable_devices_spechelper/"), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements.
+This document was generated with the [wearable device specification tool](%22https://tscnlab.shinyapps.io/wearable_devices_spechelper/%22), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements. In some situations, a device might not be able to meet all the requirements, and the researcher might need to make a decision on which requirements are most important. This document is a resource to guide the decision process between researchers and manufacturers.
 
-[**Restore this configuration in the tool through this link**](`r params$bookmark`)
+[**Restore this configuration in the tool through this link**](`r params$bookmark`) [^1]
 
-In some situations, a device might not be able to meet all the requirements, and the researcher might need to make a decision on which requirements are most important. This document is a resource to guide the decision process between researchers and manufacturers.
+[^1]: Note that depending on the size of text inputs, bookmarking may not work properly. The link will always contain all entered data, but url input length might be limited, depending on your browser. To avoid silently dropped form-infos when restoring the link, use a browser that supports long url inputs (e.g., Chrome), and be succinct with free-form text. Further, if the automatic redirect to the browser does not work when left-clicking on the link, copy the link and paste it manually into the browser.
 
 ## General information
 
 Type(s) of study: `r input$general_study_type`
+
+### This project requires **`r input$general_device_number`** devices
 
 ### Description of the (main) use case:
 
@@ -53,7 +74,7 @@ Type(s) of study: `r input$general_study_type`
 ## Hardware requirements
 
 | Aspect | Requirement | Device specs |
-|-----------------------------|------------------------|------------------------|
+|---------------------------|-----------------------|-----------------------|
 | Mounting | `r input$hardware_device_mounting` |  |
 | Max dimensions (WxBxH) | `r input$hardware_device_width` x `r input$hardware_device_depth` x `r input$hardware_device_height` `r input$hardware_device_size_unit` |  |
 | Battery: Continuous runtime, based on the specified recording/sampling interval | `r input$hardware_battery_capacity` |  |
@@ -61,12 +82,12 @@ Type(s) of study: `r input$general_study_type`
 ## Data requirements
 
 | Aspect | Requirement | Device specs |
-|----------------------------|------------------------|------------------------|
+|--------------------------|-----------------------|-----------------------|
 | Minimum recording interval | `r input$data_recording_interval` |  |
 | Flexibility of recording interval | `r input$data_recording_flexibility` |  |
 
 ## Other requirements
 
 | Aspect | Requirement | Device specs |
-|----------------------------|------------------------|------------------------|
+|--------------------------|-----------------------|-----------------------|
 | Available budget `r input$other_budget_reference` | `r input$other_budget_value` `r input$other_budget_currency` |  |

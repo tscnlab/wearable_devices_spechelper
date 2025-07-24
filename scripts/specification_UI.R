@@ -5,37 +5,38 @@ source("scripts/specs_hardware_UI.R")
 source("scripts/specs_software_UI.R")
 source("scripts/specs_other_UI.R")
 
-site_specification <- 
+site_specification <- function(){
 nav_panel(
   "Specification",
-  layout_sidebar( sidebar = settings, 
+  layout_sidebar( sidebar = settings(), 
                   accordion(
                     multiple = FALSE,
-                    # open = "hardware",
+                    # open = "software",
                     accordion_panel(
                       title = h2("General information"),
                       icon = bsicons::bs_icon("clipboard", size = "1.5em"),
                       value = "general",
-                      !!!general_specs
+                      general_specs()
                     ),
                     accordion_panel(
                       title = h2("Hardware requirements"),
                       icon = bsicons::bs_icon("motherboard", size = "1.5em"),
                       value = "hardware",
-                      !!!hardware_specs
+                      hardware_specs()
                     ),
                     accordion_panel(
                       title = h2("Data requirements"),
                       icon = bsicons::bs_icon("code-slash", size = "1.5em"),
                       value = "software",
-                      !!!software_specs
+                      software_specs()
                     ),
                     accordion_panel(
                       title = h2("Other requirements"),
                       icon = bsicons::bs_icon("clipboard-plus", size = "1.5em"),
                       value = "other",
-                      !!!other_specs
+                      other_specs()
                     )
                   )
   )
 )
+}
