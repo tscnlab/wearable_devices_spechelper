@@ -33,18 +33,38 @@
   heading-color: black,
   heading-line-height: 0.65em,
   sectionnumbering: none,
+  // allow the page numbering pattern to be specified by callers.  Older
+  // Quarto and Pandoc templates pass a parameter named `pagenumbering`
+  // whereas newer templates use `page-numbering`.  Typst’s page set rule
+  // expects a `numbering` argument (see docs for page numbering【302407848111365†L563-L570】),
+  // so we accept either parameter here and map it to the correct
+  // `numbering` property below.  Both default to "1".
+  pagenumbering: "1",
+  page-numbering: "1",
   toc: false,
   toc_title: none,
   toc_depth: none,
   toc_indent: 1.5em,
   doc,
 ) = {
+  // Determine the final page numbering pattern.  Prefer the hyphenated
+  // `page-numbering` argument if it is not the default "1", otherwise use
+  // the non‑hyphenated `pagenumbering`.  Finally, fall back to "1".
+  let _page_numbering = if page-numbering != "1" {
+    page-numbering
+  } else if pagenumbering != "1" {
+    pagenumbering
+  } else {
+    "1"
+  }
+
   set page(
     header: align(right)[
       #image("www/logo_banner2.png", width: 100%)
     ],
     paper: paper,
     margin: margin,
+    numbering: _page_numbering,
   )
   set par(justify: true)
   set text(lang: lang,
