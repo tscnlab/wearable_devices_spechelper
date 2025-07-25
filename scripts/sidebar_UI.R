@@ -17,6 +17,7 @@ settings <-
     actionButton("to_example",
                  span(strong("Give me an example!")),
                  icon = icon("file-lines")),
+    actionButton("reset_app", "Start fresh", icon = icon("undo")),
     actionButton("to_introduction",
                  span(strong("Back to the introduction")),
                  icon = icon("arrow-left")),

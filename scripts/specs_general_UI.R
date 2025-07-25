@@ -23,6 +23,12 @@ general_specs <- function() {
       placeholder = "Enter text"
     )
   ),
+  textInput(
+    "g_country",
+    label = "Country of deployment & shipment",
+    placeholder = "Enter the (initial) country of deployment & shipment",
+    width = "100%"
+  ),
   textAreaInput("g_s_desc",
                 label = "Description of the (main) use case",
                 width = "100%",

@@ -65,7 +65,8 @@ other_specs <- function() {
   dateInput(
     "o_deliv",
     "By which date will the devices be needed, i.e., delivered?",
-    width = "50%"
+    width = "50%",
+    value = NA
   ),
   h5("Testing"),
   checkboxInput(

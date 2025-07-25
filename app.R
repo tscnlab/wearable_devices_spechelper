@@ -59,6 +59,11 @@ server <- function(input, output, session) {
     session$doBookmark()
   })
   
+  observeEvent(input$reset_app, {
+    updateQueryString("?_inputs_&pages=%22Specification%22")
+    session$reload()  # restart the session, clearing all inputs
+  })
+  
   observe({
     # updateQueryString(query_string, mode = "push")
     cd <- session$clientData
@@ -85,7 +90,8 @@ server <- function(input, output, session) {
   url <- reactiveVal()
   
   setBookmarkExclude(c("to_example", "to_introduction", "bookmark_button",
-                       "create_docx", "create_pdf", "to_research_guide"))
+                       "create_docx", "create_pdf", "to_research_guide",
+                       "reset_app"))
   # onBookmarked(updateQueryString)
   onBookmarked(\(x) url(x))
   

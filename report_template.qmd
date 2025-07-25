@@ -22,18 +22,26 @@ params:
 
 ```{r}
 #| echo: false
-input <- readRDS("input_list2.rds")
+input <- readRDS("input_list.rds")
 
 remove_other <- function(x) {
   x[x != "Other"]
 }
 
-if(!is.null(input$h_err)){
+if(!is.na(input$h_err)){
   input$h_err <- paste0("(with ≤", input$h_err, "% error)")
+} else {
+  input$h_err <- ""
 }
 
-if(!is.null(input$h_fov)){
-  input$h_fov <- paste0(input$h_fov, "°", ifelse(input$h_cos, "(cosine corrected)", ""))
+if(!is.na(input$h_fov)){
+  input$h_fov <- paste0(input$h_fov, "°", ifelse(input$h_cos, " (cosine corrected)", ""))
+} else if (input$h_cos) {
+  input$h_fov <- "Cosine corrected"
+}
+
+if(!is.na(input$h_hz)) {
+  input$h_hz <- paste0("up to ", input$h_hz, " Hz")
 }
 
 input <- 
@@ -54,59 +62,41 @@ input <-
       return(.x)}
   )
 
+
+make_unspecified <- function(x, y = NULL){
+  if(length(x) == 0) {
+    x <- paste0("unspecified", y)
+  } else x
+}
+
+
 #general
-input$g_stype <- c(input$g_stype, input$g_stype_o)
+input$g_stype <- c(input$g_stype, input$g_stype_o) |> make_unspecified()
 
 #software
-if("Calculate metrics" %in% input$s_fun) {
-  input$s_fun[input$s_fun == "Calculate metrics"] <- 
-    paste0("Calculate metrics: ", input$s_fun_met)
+if ("Calculate metrics" %in% input$s_fun) {
+  input$s_fun_met <- input$s_fun_met |> make_unspecified(" metrics")
+  input$s_fun[input$s_fun == "Calculate metrics"] <-
+    paste0("Calculate metrics (", input$s_fun_met, ")")
 }
-input$s_fun <-c(input$s_fun, input$s_fun_o)
-input$s_exp <- c(input$s_exp, input$s_exp_o)
-input$s_vars <- c(input$s_vars, input$s_vars_o)
-input$s_auto <- c(input$s_auto, input$s_auto_o)
+if ("Cloud upload" %in% input$s_stor) {
+  input$s_stor[input$s_stor == "Cloud upload"] <-
+    paste0("Cloud upload (acceptable server locations: ", input$s_stor_loc, ")")
+}
+
+input$s_fun <-c(input$s_fun, input$s_fun_o) |> make_unspecified()
+input$s_exp <- c(input$s_exp, input$s_exp_o) |> make_unspecified()
+input$s_vars <- c(input$s_vars, input$s_vars_o) |> make_unspecified()
+input$s_auto <- c(input$s_auto, input$s_auto_o) |> make_unspecified()
 
 #hardware
-input$h_mount <- c(input$h_mount, input$h_mount_o)
-input$h_mat <- c(input$h_mat, input$h_mat_o)
-input$h_mod <- c(input$h_mod, input$h_mod_o)
-input$h_sport <- c(input$h_sport, input$h_sport_o)
-input$h_statInd <- c(input$h_statInd, input$h_statInd_o)
-input$h_port <- c(input$h_port, input$h_port_o)
-input$h_wlan <- c(input$h_wlan, input$h_wlan_o)
-
-# paste_other <- function(x, y) {
-#   if(y == "") {
-#     return(x)
-#   }
-#   if(is.null(x)) {
-#     return(y)
-#   }
-#   paste(x, collapse = ", ") |>  paste(y, sep = ", ")
-# }
-
-# #general
-# input$g_stype <- paste_other(input$g_stype, input$g_stype_o)
-# 
-# #software
-# if("Calculate metrics" %in% input$s_fun) {
-#   input$s_fun[input$s_fun == "Calculate metrics"] <- 
-#     paste0("Calculate metrics: ", input$s_fun_met)
-# }
-# input$s_fun <- paste_other(input$s_fun, input$s_fun_o)
-# input$s_exp <- paste_other(input$s_exp, input$s_exp_o)
-# input$s_vars <- paste_other(input$s_vars, input$s_vars_o)
-# input$s_auto <- paste_other(input$s_auto, input$s_auto_o)
-# 
-# #hardware
-# input$h_mount <- paste_other(input$h_mount, input$h_mount_o)
-# input$h_mat <- paste_other(input$h_mat, input$h_mat_o)
-# input$h_mod <- paste_other(input$h_mod, input$h_mod_o)
-# input$h_sport <- paste_other(input$h_sport, input$h_sport_o)
-# input$h_statInd <- paste_other(input$h_statInd, input$h_statInd_o)
-# input$h_port <- paste_other(input$h_port, input$h_port_o)
-# input$h_wlan <- paste_other(input$h_wlan, input$h_wlan_o)
+input$h_mount <- c(input$h_mount, input$h_mount_o) |> make_unspecified()
+input$h_mat <- c(input$h_mat, input$h_mat_o) |> make_unspecified()
+input$h_mod <- c(input$h_mod, input$h_mod_o) |> make_unspecified()
+input$h_sport <- c(input$h_sport, input$h_sport_o) |> make_unspecified()
+input$h_statInd <- c(input$h_statInd, input$h_statInd_o) |> make_unspecified()
+input$h_port <- c(input$h_port, input$h_port_o) |> make_unspecified()
+input$h_wlan <- c(input$h_wlan, input$h_wlan_o) |> make_unspecified()
 
 obs_number <- "unspecified"
 if(is.numeric(input$h_stor_day)) {
@@ -120,14 +110,29 @@ if(is.null(input$h_notes)){
 if(is.null(input$h_notesO)){
   input$h_notes <- "none"
 }
+if(is.null(input$g_country)){
+  input$g_country <- "unspecified"
+}
+if(is.null(input$h_ip)){
+  input$h_ip <- "unspecified"
+}
+if(is.null(input$s_tz)){
+  input$s_tz <- "unspecified"
+}
+if(!isTRUE(nzchar(input$o_deliv))){
+  input$o_deliv <- "unspecified"
+}
+if(!isTRUE(nzchar(input$o_instr_lan))){
+  input$o_instr_lan <- "unspecified"
+}
 
 ```
 
 ## Preface
 
-This document was generated with the [wearable device specification tool](https://tscnlab-wearable-devices-specification.share.connect.posit.cloud/), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements. In some situations, a device might not be able to meet all the requirements, and the researcher might need to make a decision on which requirements are most important. This document is a resource to guide the decision process between researchers and manufacturers.
+This document was generated with the [wearable device specification tool](https://tscnlab-wearable-devices-specification.share.connect.posit.cloud/), which enables researchers to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements. In some situations, a device might not be able to meet all the requirements, and the researcher might need to make a decision on which requirements are most important. This document is a resource to guide the decision process between researchers and manufacturers.
 
-[**Restore this configuration in the web-tool**](%60r%20params$bookmark%60) [^1]
+[**Restore this configuration in the web-tool**](`r params$bookmark`) [^1]
 
 [^1]: Note that depending on the size of text inputs, restoring the bookmark may not work properly. The link will always contain all entered data, but url input length can be limited by the browser. To avoid silently dropped form-entries upon restoring the link, use a browser that supports long url inputs (e.g., Chrome) and be succinct with free-form text. Further, if the automatic redirect to the browser does not work when left-clicking on the link, copy the link via the right-click context menu and paste it manually into your browser of choice.
 
@@ -136,6 +141,8 @@ This document was generated with the [wearable device specification tool](https:
 Type(s) of study: `r input$g_stype`
 
 Required devices: `r input$g_d_num`
+
+Country of deployment/shipment: `r input$g_country`
 
 ### Description of the intended main use case(s):
 
@@ -146,7 +153,7 @@ Required devices: `r input$g_d_num`
 ### Housing & design
 
 | Aspect | Requirement | Device specs |
-|---------------------------|-----------------------|-----------------------|
+  |---------------|---------------|---------------|
 | Mounting | `r input$h_mount` |  |
 | Housing material | `r input$h_mat` |  |
 | Max dimensions (WxBxH) | `r input$h_wid` x `r input$h_dep` x `r input$h_hgt` `r input$h_unit` |  |
@@ -156,51 +163,45 @@ Required devices: `r input$g_d_num`
 ### Measurement & sensors
 
 | Aspect | Requirement | Device specs |
-|------------------------|------------------------|------------------------|
+  |---------------|---------------|---------------|
 | Min. covered spectral range (between 100 - 1000 nm) | `r paste(input$h_spcRg, collapse = " - ")` nm |  |
 | Minimum number of channels across the spectral range | `r input$h_specCh` sensor channels |  |
 | Spectral sensitivity ≥ 1000nm | `r ifelse(input$h_ir, "Yes", "No")` |  |
 | Min. operating range | `r paste(input$h_illRg, collapse = " - ")` lx `r input$h_err` |  |
 | Field of view (sensors) | `r input$h_fov` |  |
 | Modalities other than light | `r input$h_mod` |  |
-| Sampling frequency | ≥`r input$h_hz` Hz |  |
+| Sampling frequency | `r input$h_hz` |  |
 
 ### Battery & storage
 
 | Aspect | Requirement | Device specs |
-|---------------------------|-----------------------|-----------------------|
-| Battery: continuous recording runtime without recharge | `r input$h_bat` (with `r input$h_int` recording interval & `r input$h_hz` Hz sampling) |  |
+  |---------------|---------------|---------------|
+| Battery: continuous recording runtime without recharge | `r input$h_bat` (with `r input$h_int` recording interval & `r input$h_hz` sampling) |  |
 | Storage: minimum on-device capacity | `r obs_number` observations (≥`r input$h_stor_day` days with `r input$h_int` recording interval) |  |
 
 ### Operating environment
 
-| Aspect | Requirement | Device specs |
-|--------|-------------|--------------|
-|        |             |              |
-|        |             |              |
-|        |             |              |
-|        |             |              |
-|        |             |              |
+  | Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Operating temperature | `r paste(input$h_temp, collapse = ' to ')` °C |  |
+  | Operating humidity | `r paste(input$h_hum, collapse = ' – ')` % RH |  |
+  | IP rating | `r input$h_ip` |  |
+  | Activity suitability | `r paste(input$h_sport, collapse = ', ')` |  |
 
 ### Controls & indicators
 
-| Aspect | Requirement | Device specs |
-|--------|-------------|--------------|
-|        |             |              |
-|        |             |              |
-|        |             |              |
-|        |             |              |
-|        |             |              |
+  | Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Event marker button required | `r ifelse(isTRUE(input$h_event), 'Yes', 'No')` |  |
+  | Dedicated start/stop recording button | `r ifelse(isTRUE(input$h_recBtn), 'Yes', 'No')` |  |
+  | User feedback indicators | `r paste(input$h_statInd, collapse = ', ')` |  |
 
 ### Connectivity & I/O
 
-| Aspect | Requirement | Device specs |
-|--------|-------------|--------------|
-|        |             |              |
-|        |             |              |
-|        |             |              |
-|        |             |              |
-|        |             |              |
+  | Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Acceptable connectors | `r paste(input$h_port, collapse = ', ')` |  |
+  | Required wireless connectivity | `r paste(input$h_wlan, collapse = ', ')` |  |
 
 ### Other hardware considerations
 
@@ -208,13 +209,71 @@ Required devices: `r input$g_d_num`
 
 ## Data requirements
 
-| Aspect                            | Requirement        | Device specs |
-|-----------------------------------|--------------------|--------------|
-| Minimum recording interval        | `r input$s_interv` |              |
-| Flexibility of recording interval | `r input$s_flex`   |              |
+### Software
+
+| Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Operating systems (sync/export) | `r paste(input$s_opsys, collapse = ', ')` | |
+  | Software functions | `r paste(input$s_fun, collapse = ', ')` | |
+
+### Exported data
+
+| Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Export format options | `r paste(input$s_exp, collapse = ', ')` | |
+  | Required export variables | `r paste(input$s_vars, collapse = ', ')` | |
+  | Timestamp format | `r input$s_tz` | |
+  | Locale‑independent export | `r ifelse(isTRUE(input$s_loc), 'Yes', 'No')` | |
+  | Store participant/session metadata | `r ifelse(isTRUE(input$s_meta), 'Yes', 'No')` | |
+
+### Timestamps & recording interval
+
+| Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Minimum recording interval | `r input$s_interv` | |
+  | Flexibility of recording interval | `r input$s_flex` | |
+  | Exact recording intervals required | `r ifelse(isTRUE(input$s_exact), 'Yes', 'No')` | |
+  | Handle daylight savings transitions | `r ifelse(isTRUE(input$s_dst), 'Yes', 'No')` | |
+  | Retain correct date & time after battery drain | `r ifelse(isTRUE(input$s_retaindt), 'Yes', 'No')` | |
+
+### Automated check and detections
+
+| Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Automated detection & flagging | `r paste(input$s_auto, collapse = ', ')` | |
+
+### Storage
+
+| Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Acceptable data storage locations | `r paste(input$s_stor, collapse = ', ')` | |
+
 
 ## Other requirements
 
-| Aspect | Requirement | Device specs |
-|--------------------------|-----------------------|-----------------------|
-| Available budget `r input$o_bref`, including shipping | `r input$o_bvalue` `r input$o_bcurr` |  |
+### Budget
+
+  | Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Maximum Available budget `r input$o_bref`, including shipping | `r input$o_bvalue` `r input$o_bcurr` |  |
+  | Extended warranty/insurance required | `r ifelse(isTRUE(input$o_warr), 'Yes', 'No')` | |
+  | Acceptable device ownership options [^2] | `r paste(input$o_rent, collapse = ', ')` | |
+
+[^2]: **One-time purchase** means full ownership of hardware and software. **Rental model** means the devices are returned after an agreed upon time. Specification is required on how to handle broken or lost devices, and what falls under normal use. **Subscription model** means that the hardware is bought/owned, but that some software services - which need to be specified - are only available with an active subscription. This can include things like more in-depth analysis or cloud-storage.
+
+
+### Calibration
+
+  | Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Minimum required calibration validity | `r input$o_calib` months | |
+  | Send recalibration information (cost, procedure, modalities) | `r ifelse(isTRUE(input$o_recal), 'Yes', 'No')` | |
+
+### Miscellaneous
+
+  | Aspect | Requirement | Device specs |
+  |---------------|---------------|---------------|
+  | Devices required (delivered) by  | `r input$o_deliv` | |
+  | Free test device required | `r ifelse(isTRUE(input$o_test), 'Yes', 'No')` | |
+  | Light-blocking, protective carrying case required | `r ifelse(isTRUE(input$o_case), 'Yes', 'No')` | |
+  | Provision of easy‑to‑understand instructions suitable for study participants on correct device use. | `r ifelse(isTRUE(input$o_instr), paste0('Yes (language: ', input$o_instr_lan, ')'), 'No')` | |
