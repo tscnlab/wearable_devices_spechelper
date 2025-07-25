@@ -3,6 +3,7 @@ title: "Wearable device requirements"
 subtitle: "Project: **`r params$project_name`**"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 format: 
+  html: default
   typst:
     papersize: a4
     fig-format: png
@@ -21,73 +22,199 @@ params:
 
 ```{r}
 #| echo: false
-input <- readRDS("input_list.rds")
+input <- readRDS("input_list2.rds")
 
 remove_other <- function(x) {
   x[x != "Other"]
+}
+
+if(!is.null(input$h_err)){
+  input$h_err <- paste0("(with ≤", input$h_err, "% error)")
+}
+
+if(!is.null(input$h_fov)){
+  input$h_fov <- paste0(input$h_fov, "°", ifelse(input$h_cos, "(cosine corrected)", ""))
 }
 
 input <- 
   input |> purrr::map(
     ~ {
       if(is.null(.x)) {
-      return("Not specified")}
+      return("unspecified")}
       if(any(is.na(.x))) {
-        return("Not specified")}
+        return("unspecified")}
       if(is.character(.x)) {
       .x <- remove_other(.x)
+      if(any(!nzchar(.x))){
+        .x <- NULL
+        # .x <- "---"
+      }
       return(.x)
       }
       return(.x)}
   )
 
-paste_other <- function(x, y) {
-  if(y == "") {
-    return(x)
-  }
-  paste(x, collapse = ", ") |>  paste(y, sep = ", ")
+#general
+input$g_stype <- c(input$g_stype, input$g_stype_o)
+
+#software
+if("Calculate metrics" %in% input$s_fun) {
+  input$s_fun[input$s_fun == "Calculate metrics"] <- 
+    paste0("Calculate metrics: ", input$s_fun_met)
+}
+input$s_fun <-c(input$s_fun, input$s_fun_o)
+input$s_exp <- c(input$s_exp, input$s_exp_o)
+input$s_vars <- c(input$s_vars, input$s_vars_o)
+input$s_auto <- c(input$s_auto, input$s_auto_o)
+
+#hardware
+input$h_mount <- c(input$h_mount, input$h_mount_o)
+input$h_mat <- c(input$h_mat, input$h_mat_o)
+input$h_mod <- c(input$h_mod, input$h_mod_o)
+input$h_sport <- c(input$h_sport, input$h_sport_o)
+input$h_statInd <- c(input$h_statInd, input$h_statInd_o)
+input$h_port <- c(input$h_port, input$h_port_o)
+input$h_wlan <- c(input$h_wlan, input$h_wlan_o)
+
+# paste_other <- function(x, y) {
+#   if(y == "") {
+#     return(x)
+#   }
+#   if(is.null(x)) {
+#     return(y)
+#   }
+#   paste(x, collapse = ", ") |>  paste(y, sep = ", ")
+# }
+
+# #general
+# input$g_stype <- paste_other(input$g_stype, input$g_stype_o)
+# 
+# #software
+# if("Calculate metrics" %in% input$s_fun) {
+#   input$s_fun[input$s_fun == "Calculate metrics"] <- 
+#     paste0("Calculate metrics: ", input$s_fun_met)
+# }
+# input$s_fun <- paste_other(input$s_fun, input$s_fun_o)
+# input$s_exp <- paste_other(input$s_exp, input$s_exp_o)
+# input$s_vars <- paste_other(input$s_vars, input$s_vars_o)
+# input$s_auto <- paste_other(input$s_auto, input$s_auto_o)
+# 
+# #hardware
+# input$h_mount <- paste_other(input$h_mount, input$h_mount_o)
+# input$h_mat <- paste_other(input$h_mat, input$h_mat_o)
+# input$h_mod <- paste_other(input$h_mod, input$h_mod_o)
+# input$h_sport <- paste_other(input$h_sport, input$h_sport_o)
+# input$h_statInd <- paste_other(input$h_statInd, input$h_statInd_o)
+# input$h_port <- paste_other(input$h_port, input$h_port_o)
+# input$h_wlan <- paste_other(input$h_wlan, input$h_wlan_o)
+
+obs_number <- "unspecified"
+if(is.numeric(input$h_stor_day)) {
+  obs_number <- input$h_stor_day * 24*60*60/ as.numeric(lubridate::as.duration(input$h_int))
+obs_number <- obs_number |> format(big.mark = "'")
 }
 
-input$general_study_type <- paste_other(input$general_study_type,
-                                        input$general_study_type_other)
+if(is.null(input$h_notes)){
+  input$h_notes <- "---"
+}
+if(is.null(input$h_notesO)){
+  input$h_notes <- "none"
+}
 
 ```
 
 ## Preface
 
-This document was generated with the [wearable device specification tool](%22https://tscnlab.shinyapps.io/wearable_devices_spechelper/%22), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements. In some situations, a device might not be able to meet all the requirements, and the researcher might need to make a decision on which requirements are most important. This document is a resource to guide the decision process between researchers and manufacturers.
+This document was generated with the [wearable device specification tool](https://tscnlab-wearable-devices-specification.share.connect.posit.cloud/), that enables a researcher to gather important requirements for a wearable device in a study, so that the device can be selected based on the requirements. In some situations, a device might not be able to meet all the requirements, and the researcher might need to make a decision on which requirements are most important. This document is a resource to guide the decision process between researchers and manufacturers.
 
-[**Restore this configuration in the tool through this link**](`r params$bookmark`) [^1]
+[**Restore this configuration in the web-tool**](%60r%20params$bookmark%60) [^1]
 
-[^1]: Note that depending on the size of text inputs, bookmarking may not work properly. The link will always contain all entered data, but url input length might be limited, depending on your browser. To avoid silently dropped form-infos when restoring the link, use a browser that supports long url inputs (e.g., Chrome), and be succinct with free-form text. Further, if the automatic redirect to the browser does not work when left-clicking on the link, copy the link and paste it manually into the browser.
+[^1]: Note that depending on the size of text inputs, restoring the bookmark may not work properly. The link will always contain all entered data, but url input length can be limited by the browser. To avoid silently dropped form-entries upon restoring the link, use a browser that supports long url inputs (e.g., Chrome) and be succinct with free-form text. Further, if the automatic redirect to the browser does not work when left-clicking on the link, copy the link via the right-click context menu and paste it manually into your browser of choice.
 
 ## General information
 
-Type(s) of study: `r input$general_study_type`
+Type(s) of study: `r input$g_stype`
 
-### This project requires **`r input$general_device_number`** devices
+Required devices: `r input$g_d_num`
 
-### Description of the (main) use case:
+### Description of the intended main use case(s):
 
-`r input$general_study_description`
+`r input$g_s_desc`
 
 ## Hardware requirements
 
+### Housing & design
+
 | Aspect | Requirement | Device specs |
 |---------------------------|-----------------------|-----------------------|
-| Mounting | `r input$hardware_device_mounting` |  |
-| Max dimensions (WxBxH) | `r input$hardware_device_width` x `r input$hardware_device_depth` x `r input$hardware_device_height` `r input$hardware_device_size_unit` |  |
-| Battery: Continuous runtime, based on the specified recording/sampling interval | `r input$hardware_battery_capacity` |  |
+| Mounting | `r input$h_mount` |  |
+| Housing material | `r input$h_mat` |  |
+| Max dimensions (WxBxH) | `r input$h_wid` x `r input$h_dep` x `r input$h_hgt` `r input$h_unit` |  |
+| Maximum weight (grams) | `r input$h_wgt` g |  |
+| Special design considerations | `r input$h_notes` |  |
+
+### Measurement & sensors
+
+| Aspect | Requirement | Device specs |
+|------------------------|------------------------|------------------------|
+| Min. covered spectral range (between 100 - 1000 nm) | `r paste(input$h_spcRg, collapse = " - ")` nm |  |
+| Minimum number of channels across the spectral range | `r input$h_specCh` sensor channels |  |
+| Spectral sensitivity ≥ 1000nm | `r ifelse(input$h_ir, "Yes", "No")` |  |
+| Min. operating range | `r paste(input$h_illRg, collapse = " - ")` lx `r input$h_err` |  |
+| Field of view (sensors) | `r input$h_fov` |  |
+| Modalities other than light | `r input$h_mod` |  |
+| Sampling frequency | ≥`r input$h_hz` Hz |  |
+
+### Battery & storage
+
+| Aspect | Requirement | Device specs |
+|---------------------------|-----------------------|-----------------------|
+| Battery: continuous recording runtime without recharge | `r input$h_bat` (with `r input$h_int` recording interval & `r input$h_hz` Hz sampling) |  |
+| Storage: minimum on-device capacity | `r obs_number` observations (≥`r input$h_stor_day` days with `r input$h_int` recording interval) |  |
+
+### Operating environment
+
+| Aspect | Requirement | Device specs |
+|--------|-------------|--------------|
+|        |             |              |
+|        |             |              |
+|        |             |              |
+|        |             |              |
+|        |             |              |
+
+### Controls & indicators
+
+| Aspect | Requirement | Device specs |
+|--------|-------------|--------------|
+|        |             |              |
+|        |             |              |
+|        |             |              |
+|        |             |              |
+|        |             |              |
+
+### Connectivity & I/O
+
+| Aspect | Requirement | Device specs |
+|--------|-------------|--------------|
+|        |             |              |
+|        |             |              |
+|        |             |              |
+|        |             |              |
+|        |             |              |
+
+### Other hardware considerations
+
+`r input$h_notesO`
 
 ## Data requirements
 
-| Aspect | Requirement | Device specs |
-|--------------------------|-----------------------|-----------------------|
-| Minimum recording interval | `r input$data_recording_interval` |  |
-| Flexibility of recording interval | `r input$data_recording_flexibility` |  |
+| Aspect                            | Requirement        | Device specs |
+|-----------------------------------|--------------------|--------------|
+| Minimum recording interval        | `r input$s_interv` |              |
+| Flexibility of recording interval | `r input$s_flex`   |              |
 
 ## Other requirements
 
 | Aspect | Requirement | Device specs |
 |--------------------------|-----------------------|-----------------------|
-| Available budget `r input$other_budget_reference` | `r input$other_budget_value` `r input$other_budget_currency` |  |
+| Available budget `r input$o_bref`, including shipping | `r input$o_bvalue` `r input$o_bcurr` |  |

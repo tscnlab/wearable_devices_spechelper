@@ -18,6 +18,6 @@ function(file) {
   generated_file_name <- paste0("report_template.", ifelse(type == "docx", "docx", "pdf"))
   file.copy(generated_file_name, file)
   #remove the generated RDS file
-  # file.remove("input_list.rds")
+  file.remove("input_list.rds")
 }
 }

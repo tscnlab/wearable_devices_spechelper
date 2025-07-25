@@ -1,6 +1,6 @@
 hardware_specs <- function() {
   tagList(
-  h3("Housing & Design"),
+  h3("Housing & design"),
   selectizeInput(
     "h_mount",
     "Select how the device needs to be mountable",
@@ -70,7 +70,7 @@ hardware_specs <- function() {
                 "Special design considerations", 
                 placeholder = "e.g., 'needs to be centered' for spectacle-mount",
                 width = "100%"),
-  h3("Measurement & Sensors"),
+  h3("Measurement & sensors"),
   h5("Spectral characteristics"),
   sliderInput("h_spcRg",
               "Minimum and Maximum detectable wavelength",
@@ -144,7 +144,13 @@ hardware_specs <- function() {
       width = "100%"
     )
   ),
-  h3("Battery & Storage"),
+  numericInput("h_hz", 
+               "Highest required measurement sampling rate (Hz)", 
+               width = "50%",
+               value = NULL, 
+               min = 1, 
+               step = 1),
+  h3("Battery & storage"),
   sliderTextInput(
     "h_bat",
     grid = TRUE,
@@ -169,7 +175,7 @@ hardware_specs <- function() {
     selected = "10s"
   )),
   htmlOutput("storage_days", container = p),
-  h3("Operating Environment"),
+  h3("Operating environment"),
   sliderInput("h_temp",
               "Operating temperature (°C)",
               min = -30, 
@@ -216,7 +222,7 @@ hardware_specs <- function() {
       width = "100%"
     )
   ),
-  h3("Controls & Indicators"),
+  h3("Controls & indicators"),
   checkboxInput("h_event", 
                 "Require event marker button", 
                 value = FALSE,
@@ -280,12 +286,6 @@ hardware_specs <- function() {
     )
   ),
   h3("Other hardware considerations"),
-  numericInput("h_hz", 
-               "Highest required sampling rate (Hz)", 
-               width = "50%",
-               value = NULL, 
-               min = 1, 
-               step = 1),
   textAreaInput("h_notesO", 
                 "Other hardware considerations", 
                 placeholder = "Add hardware requirements or important considerations that are not covered by the form",
