@@ -45,7 +45,6 @@
     ],
     paper: paper,
     margin: margin,
-    numbering: "1",
   )
   set par(justify: true)
   set text(lang: lang,
