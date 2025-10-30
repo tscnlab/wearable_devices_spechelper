@@ -53,6 +53,10 @@ server <- function(input, output, session) {
     updateTabsetPanel(inputId = "pages", selected = "Introduction")
   }) |> bindEvent(input$to_introduction)
   
+  observe({
+    updateTabsetPanel(inputId = "pages", selected = "About")
+  }) |> bindEvent(input$to_cite)
+  
   #observer and functions to enable bookmarking and ensure it is in an accessible variable
   observe({
     reactiveValuesToList(input)

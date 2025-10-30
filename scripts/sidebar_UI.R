@@ -8,6 +8,9 @@ settings <-
                    icon = icon("file-word"),
                    class = "btn-success btn-lg"
     ),
+    actionButton("to_cite",
+                 span(strong("Cite me")),
+                 icon = icon("quote-right")),
     downloadButton("create_pdf", 
                    span(strong("Create & Download PDF")), 
                    icon = icon("file-pdf")

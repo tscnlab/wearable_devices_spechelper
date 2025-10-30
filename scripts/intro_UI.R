@@ -45,7 +45,21 @@ how_to <- tagList(
   h3(actionButton("to_specification_form",
                   span(strong("Start the specification")),
                   icon = icon("file-pen"), class = "btn-success btn-lg")),
-  p("For more information on relevant considerations for wearable devices, please visit the ", a("RDA Research Guide for wearable light loggers and optical radiation dosimeters", href = "https://rda-wg-visualexperiencedata.github.io/ResearcherGuide/", .noWS = "after"), ", which provides many more considerations relating to device specifications.")
+  p("For more information on relevant considerations for wearable devices, please visit the ", a("RDA Research Guide for wearable light loggers and optical radiation dosimeters", href = "https://rda-wg-visualexperiencedata.github.io/ResearcherGuide/", .noWS = "after"), ", which provides many more considerations relating to device specifications."),
+  p("If you used this application, please cite as:"),
+  fluidRow(
+    column(
+      width = 8,  # 6/12 = 50%
+      div(
+        tags$pre(id = "apaText2", class = "citation-pre", width = "50%",
+                 "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
+Wearable light logger and optical radiation dosimeter specification tool (Version 1.0.0) [Computer software]. 
+Zenodo. https://doi.org/10.5281/zenodo.17487054
+Available at https://tscnlab-wearable-devices-specification.share.connect.posit.cloud"
+        ),
+        actionButton("copy", "Copy", onclick = "copyAPA()")
+      )    )
+  ),
 )
 
 site_introduction <- 

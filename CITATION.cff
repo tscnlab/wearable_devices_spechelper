@@ -44,9 +44,14 @@ authors:
       Technical University of Munich & Max Planck Institute
       for Biological Cybernetics
     orcid: 'https://orcid.org/0000-0002-8572-9268'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.17487054
+    description: Zenodo Archive
 repository-code: 'https://github.com/tscnlab/wearable_devices_spechelper'
 url: >-
   https://tscnlab-wearable-devices-specification.share.connect.posit.cloud
+repository-artifact: 'https://doi.org/10.5281/zenodo.17487054'
 keywords:
   - wearable
   - light exposure
