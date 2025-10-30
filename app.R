@@ -37,8 +37,8 @@ ui <- function(request) {
   site_introduction,
   site_specification(),
   site_about,
-  !!!nav_items,
-)
+  !!!nav_items
+  )
 }
 
 # Server -----------
@@ -105,6 +105,13 @@ server <- function(input, output, session) {
   
   #output handler for word
   output$create_docx <- downloadHandler(
+    filename = function() {
+      paste0(Sys.Date(),"_wearable_speclist_", input$g_pname, ".docx")
+    },
+    content = file_preparation("docx", url, input)
+  )
+  
+  output$create_docx2 <- downloadHandler(
     filename = function() {
       paste0(Sys.Date(),"_wearable_speclist_", input$g_pname, ".docx")
     },

@@ -79,13 +79,15 @@ hardware_specs <- function() {
               value = c(380, 780), step = 5,
               post = " nm",
               width = "100%"),
-  numericInput("h_specCh", 
-               "Minimum number of spectral sensor channels", 
-               width = "50%",
-               value = NULL, 
-               min = 1, 
-               step = 1),
-  checkboxInput("h_ir", 
+  sliderTextInput("h_specCh",
+              "Minimum spectral resolution (in nm)",
+              width = "60%",
+              choices = c("<1", "1", "5", "10", "50", 
+                          "100", ">100", "No spectral output required"),
+              selected = "No spectral output required",
+              grid = TRUE
+              ),
+    checkboxInput("h_ir", 
                 "Requirement of IR sensing ≥ 1000nm", 
                 value = FALSE,
                 width = "100%"
@@ -146,11 +148,18 @@ hardware_specs <- function() {
     )
   ),
   numericInput("h_hz", 
-               "Highest required measurement sampling rate (Hz)", 
+               tagList("Highest required measurement sampling rate (Hz)", icon("info-circle")), 
                width = "50%",
                value = NULL, 
                min = 1, 
-               step = 1),
+               step = 1)|> 
+    tooltip(
+      p("Sampling rate is how often measurements are taken (for example, once per second)."),
+      p("Recording interval is how often those measurements are stored or logged."),
+      p("If the sampling rate is higher than the recording interval, multiple samples are collected between recordings. In that case, the system must aggregate the samples (for example, by averaging or selecting representative values) before saving them."),
+      placement = "right",
+      options   = list(container = "body")
+    ),
   h3("Battery & storage"),
   sliderTextInput(
     "h_bat",
@@ -178,19 +187,36 @@ hardware_specs <- function() {
   htmlOutput("storage_days", container = p),
   h3("Operating environment"),
   sliderInput("h_temp",
-              "Operating temperature (°C)",
+              tagList("Operating temperature (°C)", icon("info-circle")),
               min = -30, 
               max = 60,
               value = c(-10, 45), step = 5,
               post = " °C",
-              width = "100%"),  
+              width = "100%")|> 
+    tooltip(
+      p("-30 °C: Extremely cold — typical of Arctic winters or high-altitude mountain conditions."),
+      p("0 °C to 10 °C: Cold outdoor environments, early winter mornings, or refrigerated storage."),
+      p("20 °C to 35 °C: Normal everyday conditions — typical indoor and outdoor temperatures in most climates."),
+      p("40 °C to 50 °C: Hot summer days in direct sunlight or inside a parked car."),
+      p("60 °C and beyond: Very high heat — can occur e.g., in a sauna, on exposed surfaces, near machinery, or in desert conditions."),
+      placement = "right",
+      options   = list(container = "body")
+    ),  
   sliderInput("h_hum",
-              "Operating humidity, relative (% RH)",
+              tagList("Operating humidity, relative (% RH)", icon("info-circle")),
               min = 0, 
               max = 100,
               value = c(20, 95), step = 5,
               post = " % RH",
-              width = "100%"),
+              width = "100%") |> 
+    tooltip(
+      p("0–20%: Very dry air — common in heated indoor spaces or desert climates."),
+      p("30–60%: Typical indoor and comfortable outdoor humidity range."),
+      p("70–90%: Humid environments — tropical regions, bathrooms after showers, or misty mornings."),
+      p("100%: Fully saturated air — fog, heavy rain, or condensation-prone conditions."),
+      placement = "right",
+      options   = list(container = "body")
+    ),
   selectizeInput(
     inputId = "h_ip",
     label   = tagList("Ingress Protection (IP) rating", icon("info-circle")),
@@ -234,7 +260,7 @@ hardware_specs <- function() {
                 width = "100%"),  
   selectizeInput("h_statInd", 
                  "Required user feedback indicators (e.g. status light)",
-                 choices = c("Charging", "Low battery", "Recording", "Error", "Other"),
+                 choices = c("Charging", "Low battery", "Recording", "Error", "Active, but not recording", "Other"),
                  selected = NULL,
                  multiple = TRUE,
                  options   = list(placeholder = "Select required status indicators"),

@@ -36,6 +36,11 @@ nav_panel(
                       value = "other",
                       other_specs()
                     )
+                  ),
+                  downloadButton("create_docx2", 
+                                 span(strong("Create & Download Word")), 
+                                 icon = icon("file-word"),
+                                 class = "btn-success btn-lg"
                   )
   )
 )

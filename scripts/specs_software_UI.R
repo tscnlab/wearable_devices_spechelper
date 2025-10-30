@@ -59,9 +59,10 @@ software_specs <- function() {
   selectizeInput("s_vars", 
                  "Required export variables (besides timestamp)",
                  choices = c("Illuminance", "Melanopic EDI", 
-                             "Other alpha-opic values", "Sensor counts", 
-                             "Gain levels", "Integration time", "Device angle", 
-                             "Activity", "Steps", "Temperature", "Battery level", 
+                             "Other alpha-opic values", 
+                             "Activity", "Steps", "Temperature", "Battery level",
+                             "Sensor counts", 
+                             "Gain levels", "Integration time", "Device angle",
                              "Other"),
                  multiple = TRUE,
                  width = "100%",
@@ -83,7 +84,10 @@ software_specs <- function() {
   checkboxInput("s_loc", 
                  "Export format must be locale-independent",
                 width = "100%",
-                 value = TRUE),
+                 value = TRUE) |> 
+    tooltip(
+      "This means that the exported file does not depend on the locale settings of a device or computer. This includes aspects such as date and time formats, choice of delimiters, and decimal separators. It is generally recommended to keep the file independent of locale settings, since varying formats can make it harder to import data into programs or share it reliably between researchers."
+    ),
   checkboxInput("s_meta", 
                 "Option to store participant/session metadata with dataset", 
                 width = "100%",
@@ -139,10 +143,10 @@ software_specs <- function() {
   ),
   h3("Storage"),
   checkboxGroupInput("s_stor", 
-                     tagList("Acceptable locations of data storage", icon("info-circle")),
+                     tagList("Acceptable locations of data storage (unchecked locations are not acceptable)", icon("info-circle")),
                      choices = c("On‑device memory", "Cloud upload", "Smartphone companion app"),
                      width = "100%",
-                     selected = NULL) |> 
+                     selected = "On‑device memory") |> 
     tooltip("Select where data can be stored until it is exported by the researcher"),
   conditionalPanel(
     condition = "input.s_stor?.includes('Cloud upload')",

@@ -165,7 +165,7 @@ Country of deployment/shipment: `r input$g_country`
 | Aspect | Requirement | Device specs |
   |---------------|---------------|---------------|
 | Min. covered spectral range (between 100 - 1000 nm) | `r paste(input$h_spcRg, collapse = " - ")` nm |  |
-| Minimum number of channels across the spectral range | `r input$h_specCh` sensor channels |  |
+| Minimum spectral resolution (in nm) | `r input$h_specCh` |  |
 | Spectral sensitivity ≥ 1000nm | `r ifelse(input$h_ir, "Yes", "No")` |  |
 | Min. operating range | `r paste(input$h_illRg, collapse = " - ")` lx `r input$h_err` |  |
 | Field of view (sensors) | `r input$h_fov` |  |
