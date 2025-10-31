@@ -226,6 +226,7 @@ hardware_specs <- function() {
     options   = list(placeholder = "Select IP rating (optional)")
   ) |> 
     tooltip(
+      p("The IP rating specifies the protection of the device against solids (first digit), and water (second digit)."),
       p("IPXY: X = solids (0–6), Y = water (0–8)."),
       p("Solids – 0 none, 1 >50 mm, 2 >12.5 mm, 3 >2.5 mm, 4 >1 mm, 5 dust‑protected, 6 dust‑tight."),
       p("Water – 0 none, 1 drips, 2 drips @15°, 3 spray, 4 splash, 5 jets, 6 powerful jets, 7 immersion ≤1 m, 8 immersion >1 m."),
