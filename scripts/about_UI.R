@@ -23,7 +23,7 @@ nav_panel(
         tags$pre(id = "apaText", class = "citation-pre", width = "50%",
                  "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
 Wearable light logger and optical radiation dosimeter specification tool (Version 1.0.0) [Computer software]. 
-Zenodo. https://doi.org/10.5281/zenodo.17487054
+
 Available at https://tscnlab-wearable-devices-specification.share.connect.posit.cloud"
                  
         ),
