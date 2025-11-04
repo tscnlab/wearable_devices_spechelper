@@ -16,6 +16,13 @@ tags$footer(
     tags$image(src = 'logo_banner2.png', width = "100%"),
     href = "https://www.melidos.eu",
     target = "_blank"
+  ),
+  br(),
+  a(
+    tags$div(style = "text-align:center;",
+             tags$image(src = 'logo-mpi.png', width = "250px")),
+    href = "https://www.kyb.tuebingen.mpg.de/en",
+    target = "_blank",
   )
 )
 
