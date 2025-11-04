@@ -50,13 +50,21 @@ how_to <- tagList(
   fluidRow(
     column(
       width = 8,  # 6/12 = 50%
-      div(
-        tags$pre(id = "apaText2", class = "citation-pre", width = "50%",
+      actionButton("copy", "Software (click to copy)", onclick = "copyAPA2()"),
+      p(
+        tags$pre(id = "apaText2", class = "citation-pre", width = "100%",
                  "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
-Wearable light logger and optical radiation dosimeter specification tool (Version 1.0.0) [Computer software]. 
-Available at https://tscnlab-wearable-devices-specification.share.connect.posit.cloud"
+Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.1) [Software]. 
+https://doi.org/10.17617/1.04ga-fd22"
         ),
-        actionButton("copy", "Copy", onclick = "copyAPA()")
+        ),
+      actionButton("copy", "Code (click to copy)", onclick = "copyAPA()"),
+      p(
+        tags$pre(id = "apaText3", class = "citation-pre", width = "100%",
+                 "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
+Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.1) [Code]. 
+Zenodo. https://doi.org/10.5281/zenodo.17487054"
+        )
       )    )
   ),
 )
