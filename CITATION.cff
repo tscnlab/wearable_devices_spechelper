@@ -46,6 +46,9 @@ authors:
     orcid: 'https://orcid.org/0000-0002-8572-9268'
 identifiers:
   - type: doi
+    value: 10.17617/1.04ga-fd22
+    description: Software
+  - type: doi
     value: 10.5281/zenodo.17487054
     description: Zenodo Archive
 repository-code: 'https://github.com/tscnlab/wearable_devices_spechelper'
@@ -59,5 +62,5 @@ keywords:
   - specification
   - visual experience
 license: MIT
-version: 1.0.0
-date-released: '2025-10-31'
+version: 1.0.1
+date-released: '2025-11-04'
