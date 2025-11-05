@@ -37,7 +37,16 @@ ui <- function(request) {
   site_introduction,
   site_specification(),
   site_about,
-  !!!nav_items
+  !!!nav_items,
+  tags$style(HTML("
+    /* Let the brand text wrap and break long words if needed */
+    .navbar .navbar-brand {
+      min-width: 0;              /* allow flexbox to shrink it */
+      white-space: normal;       /* permit wrapping */
+      overflow-wrap: anywhere;   /* break long words/URLs */
+      line-height: 1.1;
+    }
+  "))
   )
 }
 
