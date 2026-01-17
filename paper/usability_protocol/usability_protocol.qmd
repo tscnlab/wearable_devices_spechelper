@@ -1,0 +1,115 @@
+---
+title: "usability_protocol"
+format: docx
+---
+
+# Usability Protocol (Expert Researchers)
+
+## Study goal
+Collect expert usability feedback on the *Wearable Device Specification Tool* (web app) to evaluate UI/UX clarity, content completeness, and how well the tool supports selecting wearable light loggers and optical radiation dosimeters for research studies.
+
+## Target participants
+Expert researchers who regularly design studies with wearable light loggers / optical radiation dosimeters (or adjacent wearable sensing devices).
+
+## Delivery format
+Google Forms survey, completed after brief hands-on use of the app.
+
+## Estimated time
+15–20 minutes.
+
+---
+
+## Moderator instructions (for recruitment email or pre‑survey text)
+1. Ask participants to open the web app.
+2. Ask them to complete the short task list (below) using any realistic study scenario.
+3. Ask them to fill out the Google Form immediately after.
+
+---
+
+## Task list (include in the Google Form intro)
+
+**Task 1 — Orientation**
+
+- Read the “Introduction” page, especially the background and the “Use Cases” section.
+
+**Task 2 — Create a specification**
+
+- Fill out the “Specification” page with a realistic study scenario (their own or a plausible one).
+
+- Complete at least one field in each accordion section: **General information**, **Hardware requirements**, **Data requirements**, **Other requirements**.
+
+**Task 3 — Export**
+
+- Download the Word export (and PDF if desired).
+
+---
+
+## Google Forms structure and questions
+Use a 1–5 Likert scale where indicated (1 = strongly disagree / very poor, 5 = strongly agree / excellent). Keep optional open-ended responses to minimize burden and make summarization easier.
+
+### Section A — Eligibility & context (short)
+1. **Primary domain of work** (multiple choice)
+   * Circadian / sleep research
+   * Vision / light exposure research
+   * Other wearable sensing research
+   * Other (short text)
+2. **Years of experience working with wearable light loggers or optical radiation dosimeters** (multiple choice)
+   * 0–1
+   * 2–4
+   * 5–9
+   * 10+
+3. **Typical study duration(s)** (checkboxes)
+   * < 24 hours
+   * ≤ 21 days
+   * \> 21 days
+   * Mixed / varies
+
+### Section B — Task completion check (binary)
+4. **I completed all three tasks listed above.** (Yes/No)
+5. **If not, what prevented completion?** (short text)
+
+### Section C — UI/UX clarity and navigation (Likert)
+6. **The overall layout made it easy to find relevant sections.**
+7. **The accordion structure (General / Hardware / Data / Other) was intuitive.**
+8. **Field labels and helper text were clear and unambiguous.**
+9. **Tooltips provided the right amount of guidance.**
+10. **The bookmarking / shareable URL concept was understandable.**
+11. **The export buttons were easy to locate and understand.**
+
+### Section D — Content coverage and relevance (Likert)
+12. **The specification fields cover the most important requirements for wearable light logger selection.**
+13. **The hardware section captures key measurement and form‑factor considerations.**
+14. **The data section captures key export and timestamp requirements.**
+15. **The “Use Cases” framing (short‑ / medium‑ / long‑term use) is appropriate for this domain.**
+16. **The long‑term usability vs. fidelity trade‑off was clearly communicated.**
+
+### Section E — Output usefulness (Likert)
+17. **The exported Word document is suitable for sharing with manufacturers.**
+18. **The exported output would support device comparison or procurement decisions.**
+19. **I would use (or recommend) this tool in future study planning.**
+
+### Section F — Focused, easy‑to‑summarize open responses
+20. **Most helpful element of the UI or content (short text, 1–2 sentences).**
+21. **Biggest gap or missing requirement (short text, 1–2 sentences).**
+22. **One change that would most improve the tool (short text, 1–2 sentences).**
+23. **If you are willing, name a specific requirement you often need that was hard to express here.** (short text)
+
+### Section G — Optional follow‑up
+24. **May we contact you for a brief follow‑up?** (Yes/No)
+25. **Email (optional)** (short text, conditional on Yes)
+
+---
+
+## Suggested summary metrics for the paper
+* **Completion rate:** % who completed all tasks.
+* **UI/UX clarity score:** mean of Q6–Q11.
+* **Content coverage score:** mean of Q12–Q16.
+* **Output usefulness score:** mean of Q17–Q19.
+* **Top themes:** summarize Q20–Q22 using 2–4 recurring themes.
+
+---
+
+## Notes for analysis (internal)
+* Use descriptive statistics (mean, SD) for the Likert scale blocks.
+* Report the most frequent qualitative themes with short representative quotes.
+* Map open‑text issues to sections (General, Hardware, Data, Other, Export) for quick prioritization.
