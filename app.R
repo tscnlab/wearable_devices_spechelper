@@ -41,51 +41,10 @@ ui <- function(request) {
   tags$style(HTML("
     /* Let the brand text wrap and break long words if needed */
     .navbar .navbar-brand {
-      min-width: 0;
-      white-space: normal;
-      overflow-wrap: anywhere;
+      min-width: 0;              /* allow flexbox to shrink it */
+      white-space: normal;       /* permit wrapping */
+      overflow-wrap: anywhere;   /* break long words/URLs */
       line-height: 1.1;
-    }
-
-    .bslib-page-navbar {
-      background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
-    }
-
-    .card {
-      border-radius: 0.9rem;
-      border-color: #dbe7ff;
-      box-shadow: 0 4px 14px rgba(24, 62, 117, 0.08);
-    }
-
-    .accordion-button {
-      font-weight: 600;
-    }
-
-    .details-pill {
-      display: inline-block;
-      margin-left: .75rem;
-      padding: .2rem .55rem;
-      font-size: .78rem;
-      font-weight: 700;
-      color: #0b4db9;
-      background: #e7f0ff;
-      border-radius: 999px;
-      vertical-align: middle;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-    }
-
-    .specs-accordion-hint {
-      background: #eef6ff;
-      border: 1px solid #cde0ff;
-      color: #17396b;
-      border-radius: .75rem;
-      padding: .6rem .85rem;
-      margin-bottom: .75rem;
-    }
-
-    .btn {
-      border-radius: .7rem;
     }
   "))
   )
