@@ -77,7 +77,7 @@ software_specs <- function() {
     )
   ),
   selectizeInput("s_tz", "Timestamp format",
-                 choices = c("", "UTC (ISO 8601 with trailing Z)", "Local time + Offset (ISO 8601)", "Local time"),
+                 choices = c("", "UTC", "Local time + Offset (ISO 8601)", "Local time"),
                  width = "100%",
                  options  = list(placeholder = "Select timestamp format"),
                  selected = NULL),
@@ -122,7 +122,7 @@ software_specs <- function() {
                 tagList("Requirement to retain correct date & time after battery drain", icon("info-circle")),
                 width = "100%",
                 value = FALSE) |> 
-    tooltip("Some devices lose the datetime when the battery is drained. When they are charged and restart (without syncing to a PC), they have an incorrect timestamp."),
+    tooltip("Some devices loose the datetime when the battery is drained. When they are charged and restart (without syncing to a PC), they have an incorrect timestamp."),
   h3("Automated checks and detections"),
   selectizeInput("s_auto",
                      label = "Requirement for automated detection & flagging of:",

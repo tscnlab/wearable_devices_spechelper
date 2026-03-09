@@ -50,7 +50,7 @@ how_to <- tagList(
   fluidRow(
     column(
       width = 8,  # 6/12 = 50%
-      actionButton("copy_software", "Software (click to copy)", onclick = "copyAPA2()"),
+      actionButton("copy", "Software (click to copy)", onclick = "copyAPA2()"),
       p(
         tags$pre(id = "apaText2", class = "citation-pre", width = "100%",
                  "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
@@ -58,7 +58,7 @@ Web-based specification tool for wearable light loggers and optical radiation do
 https://doi.org/10.17617/1.04ga-fd22"
         ),
         ),
-      actionButton("copy_code", "Code (click to copy)", onclick = "copyAPA()"),
+      actionButton("copy", "Code (click to copy)", onclick = "copyAPA()"),
       p(
         tags$pre(id = "apaText3", class = "citation-pre", width = "100%",
                  "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 

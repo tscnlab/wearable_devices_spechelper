@@ -9,35 +9,29 @@ site_specification <- function(){
 nav_panel(
   "Specification",
   layout_sidebar( sidebar = settings(), 
-                  div(
-                    class = "specs-accordion-hint",
-                    icon("hand-pointer"),
-                    strong(" Details:"),
-                    " click a section header below to expand and edit requirements."
-                  ),
                   accordion(
                     multiple = FALSE,
                     # open = "software",
                     accordion_panel(
-                      title = tagList(h2("General information"), span(class = "details-pill", "Click to open")),
+                      title = h2("General information"),
                       icon = bsicons::bs_icon("clipboard", size = "1.5em"),
                       value = "general",
                       general_specs()
                     ),
                     accordion_panel(
-                      title = tagList(h2("Hardware requirements"), span(class = "details-pill", "Click to open")),
+                      title = h2("Hardware requirements"),
                       icon = bsicons::bs_icon("motherboard", size = "1.5em"),
                       value = "hardware",
                       hardware_specs()
                     ),
                     accordion_panel(
-                      title = tagList(h2("Data requirements"), span(class = "details-pill", "Click to open")),
+                      title = h2("Data requirements"),
                       icon = bsicons::bs_icon("code-slash", size = "1.5em"),
                       value = "software",
                       software_specs()
                     ),
                     accordion_panel(
-                      title = tagList(h2("Other requirements"), span(class = "details-pill", "Click to open")),
+                      title = h2("Other requirements"),
                       icon = bsicons::bs_icon("clipboard-plus", size = "1.5em"),
                       value = "other",
                       other_specs()
