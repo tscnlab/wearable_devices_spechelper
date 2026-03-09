@@ -108,7 +108,7 @@ if(is.null(input$h_notes)){
   input$h_notes <- "---"
 }
 if(is.null(input$h_notesO)){
-  input$h_notes <- "none"
+  input$h_notesO <- "none"
 }
 if(is.null(input$g_country)){
   input$g_country <- "unspecified"
@@ -118,6 +118,9 @@ if(is.null(input$h_ip)){
 }
 if(is.null(input$s_tz)){
   input$s_tz <- "unspecified"
+}
+if(identical(input$s_tz, "UTC")){
+  input$s_tz <- "UTC (ISO 8601 with trailing Z)"
 }
 if(!isTRUE(nzchar(input$o_deliv))){
   input$o_deliv <- "unspecified"
