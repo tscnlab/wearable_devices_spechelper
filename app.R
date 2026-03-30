@@ -28,25 +28,21 @@ source("scripts/query_string.R", local = TRUE)
 # UI ------------
 ui <- function(request) {
   page_navbar(
-    # selected = "Specification",
-  title = tagList(app_title,   
-  tags$style(HTML("
-    /* Let the brand text wrap and break long words if needed */
-    .navbar .navbar-brand {
-      min-width: 0;              /* allow flexbox to shrink it */
-      white-space: normal;       /* permit wrapping */
-      overflow-wrap: anywhere;   /* break long words/URLs */
-      line-height: 1.1;
-    }
-  "))),
+  title = app_title,
   footer = app_footer,
-  id = "pages",
   fillable = FALSE,
   nav_spacer(),
-  site_introduction,
-  site_specification(),
-  site_about,
   !!!nav_items,
+  nav_panel(
+    "",
+    card(
+      full_screen = TRUE,
+      layout_sidebar(
+        sidebar = settings(),
+        uiOutput("page_content")
+      )
+    )
+  )
   )
 }
 
@@ -55,16 +51,26 @@ server <- function(input, output, session) {
   
   #observers to switch to and from the intro page
   observe({
-    updateTabsetPanel(inputId = "pages", selected = "Specification")
+    updateRadioButtons(inputId = "pages", selected = "Specification")
   }) |> bindEvent(input$to_specification_form)
   
   observe({
-    updateTabsetPanel(inputId = "pages", selected = "Introduction")
+    updateRadioButtons(inputId = "pages", selected = "Introduction")
   }) |> bindEvent(input$to_introduction)
   
   observe({
-    updateTabsetPanel(inputId = "pages", selected = "About")
+    updateRadioButtons(inputId = "pages", selected = "About")
   }) |> bindEvent(input$to_cite)
+
+  output$page_content <- renderUI({
+    req(input$pages)
+    switch(
+      input$pages,
+      "Introduction" = site_introduction,
+      "Specification" = site_specification(),
+      "About" = site_about
+    )
+  })
   
   #observer and functions to enable bookmarking and ensure it is in an accessible variable
   observe({
@@ -73,7 +79,7 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$reset_app, {
-    updateQueryString("?_inputs_&pages=%22Specification%22")
+    updateQueryString("?_inputs_&pages=Specification")
     session$reload()  # restart the session, clearing all inputs
   })
   

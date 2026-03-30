@@ -1,6 +1,5 @@
 site_about <- 
-nav_panel(
-  "About",
+tagList(
   card(
   p(
     "This application was designed by the ",

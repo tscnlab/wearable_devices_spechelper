@@ -70,8 +70,7 @@ Zenodo. https://doi.org/10.5281/zenodo.17487054"
 )
 
 site_introduction <- 
-  nav_panel(
-    "Introduction", 
+  tagList(
     verbatimTextOutput("query"),
     card(
       card_title("How to use this tool?", container = h2),

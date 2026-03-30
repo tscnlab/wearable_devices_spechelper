@@ -2,28 +2,37 @@
 settings <- 
   function(){ 
   sidebar(
-    # open = FALSE,
-    downloadButton("create_docx", 
-                   span(strong("Create & Download Word")), 
-                   icon = icon("file-word"),
-                   class = "btn-success btn-lg"
+    radioButtons(
+      inputId = "pages",
+      label = h4("Navigate"),
+      choices = c("Introduction", "Specification", "About"),
+      selected = "Specification",
+      width = "100%"
     ),
-    actionButton("to_cite",
-                 span(strong("Cite me")),
-                 icon = icon("quote-right")),
-    downloadButton("create_pdf", 
-                   span(strong("Create & Download PDF")), 
-                   icon = icon("file-pdf")
+    conditionalPanel(
+      condition = "input.pages === 'Specification'",
+      downloadButton("create_docx", 
+                     span(strong("Create & Download Word")), 
+                     icon = icon("file-word"),
+                     class = "btn-success btn-lg"
+      ),
+      actionButton("to_cite",
+                   span(strong("Cite me")),
+                   icon = icon("quote-right")),
+      downloadButton("create_pdf", 
+                     span(strong("Create & Download PDF")), 
+                     icon = icon("file-pdf")
+      ),
+      p(style = "border-bottom: 1px solid"),
+      bookmarkButton(id = "bookmark_button"),
+      actionButton("to_example",
+                   span(strong("Give me an example!")),
+                   icon = icon("file-lines")),
+      actionButton("reset_app", "Start fresh", icon = icon("undo")),
+      actionButton("to_introduction",
+                   span(strong("Back to the introduction")),
+                   icon = icon("arrow-left"))
     ),
-    p(style = 'border-bottom: 1px solid'),
-    bookmarkButton(id = "bookmark_button"),
-    actionButton("to_example",
-                 span(strong("Give me an example!")),
-                 icon = icon("file-lines")),
-    actionButton("reset_app", "Start fresh", icon = icon("undo")),
-    actionButton("to_introduction",
-                 span(strong("Back to the introduction")),
-                 icon = icon("arrow-left")),
     a(
       actionButton("to_research_guide",
                    span(strong("Go to RDA research guide")),
