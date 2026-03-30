@@ -35,9 +35,6 @@ settings <-
       ),
       p(style = 'border-bottom: 1px solid'),
       strong("Further options"),
-      actionButton("to_cite",
-                   span(strong("Cite me")),
-                   icon = icon("quote-right")),
       bookmarkButton(id = "bookmark_button",
                      label = strong("Bookmark...")
       ),
@@ -45,6 +42,9 @@ settings <-
                    span(strong("Give me an example!")),
                    icon = icon("file-lines")),
       actionButton("reset_app", "Start fresh", icon = icon("undo")),
+      actionButton("to_cite",
+                   span(strong("Cite me")),
+                   icon = icon("quote-right")),
       tags$head(
         tags$style(HTML("
       /* only modals that ALSO have class .wide */
