@@ -1,5 +1,5 @@
 site_about <- 
-nav_panel(
+nav_panel_hidden(
   "About",
   card(
   p(

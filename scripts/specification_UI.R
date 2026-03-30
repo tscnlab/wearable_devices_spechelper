@@ -6,9 +6,9 @@ source("scripts/specs_software_UI.R")
 source("scripts/specs_other_UI.R")
 
 site_specification <- function(){
-nav_panel(
+nav_panel_hidden(
   "Specification",
-  layout_sidebar( sidebar = settings(), 
+  # layout_sidebar( sidebar = settings(), 
                   accordion(
                     multiple = FALSE,
                     # open = "software",
@@ -37,11 +37,15 @@ nav_panel(
                       other_specs()
                     )
                   ),
+                  card_footer(
+                    br(), br(),
                   downloadButton("create_docx2", 
                                  span(strong("Create & Download Word")), 
                                  icon = icon("file-word"),
                                  class = "btn-success btn-lg"
+                  ),
+                  class = "d-flex justify-content-center",
                   )
-  )
+  # )
 )
 }

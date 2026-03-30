@@ -40,12 +40,25 @@ ui <- function(request) {
     }
   "))),
   footer = app_footer,
-  id = "pages",
   fillable = FALSE,
   nav_spacer(),
-  site_introduction,
-  site_specification(),
-  site_about,
+  # site_introduction,
+  # site_introduction,
+  nav_panel_hidden(
+    "General",
+    card(
+      layout_sidebar(
+        sidebar = settings(),
+        navset_hidden(
+          id = "pages",
+          site_introduction,
+          site_specification(),
+          site_about 
+        )
+      )
+    )
+  ),
+  # site_about,
   !!!nav_items,
   )
 }
@@ -64,7 +77,11 @@ server <- function(input, output, session) {
   
   observe({
     updateTabsetPanel(inputId = "pages", selected = "About")
-  }) |> bindEvent(input$to_cite)
+  }) |> bindEvent(input$to_cite, input$to_about, ignoreInit = TRUE)
+  
+  observe({
+    updateTabsetPanel(inputId = "pages", selected = "Specification")
+  }) |> bindEvent(input$to_specification)
   
   #observer and functions to enable bookmarking and ensure it is in an accessible variable
   observe({

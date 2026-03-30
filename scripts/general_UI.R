@@ -1,9 +1,7 @@
 #app title
 app_title <- 
 h1(
-  span(
-    "Web-based specification tool for wearable light loggers and optical radiation dosimeters"
-  )
+    "Web-based specification tool for wearable", br(), "light loggers and optical radiation dosimeters"
 )
 
 #app footer

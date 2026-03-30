@@ -108,4 +108,4 @@ Future improvements of the application should focus on tooltips and recommendati
 
 ## Acknowledgements
 
-> We thank Filomena Russo and five anonymous researchers for testing the web-tool and providing feedback as part of a user-survey.
+> We thank Debora Constantino, Carlyn A. Patterson Gentile, Filomena Russo and five anonymous researchers for testing the web-tool and providing feedback as part of a user-survey.

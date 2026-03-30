@@ -30,7 +30,11 @@ introPage <- tagList(
   p("For long‑term deployments, ease of use and participant acceptance are paramount. The device must integrate seamlessly into the person’s life for extended periods. If the logger is cumbersome or intrusive, participants are likely to stop using it, risking attrition in the study. Minimising burden on the user – by making the logger as comfortable, low‑maintenance, and unobtrusive as possible – is key to keeping compliance high over long durations."),
   
   h3("Usability and Fidelity Trade‑Off"),
-  p("It is important to recognise that there is a fundamental trade‑off between long‑term wearability and measurement fidelity. The most accurate light measurements usually come from devices worn near the eye or using more complex sensors, but those configurations tend to be less comfortable or convenient for extended use. Unless such devices can be greatly miniaturised or embedded into everyday items (for example, integrated into regular eyewear), researchers must balance obtaining higher fidelity data with ensuring the device is tolerable for participants. As of 2025, no available light logger perfectly achieves both high fidelity and seamless long‑term usability – in practice, collecting extremely accurate, eye‑level light data over very long periods is not yet feasible without compromising on user comfort or compliance.")
+  p("It is important to recognise that there is a fundamental trade‑off between long‑term wearability and measurement fidelity. The most accurate light measurements usually come from devices worn near the eye or using more complex sensors, but those configurations tend to be less comfortable or convenient for extended use. Unless such devices can be greatly miniaturised or embedded into everyday items (for example, integrated into regular eyewear), researchers must balance obtaining higher fidelity data with ensuring the device is tolerable for participants. As of 2025, no available light logger perfectly achieves both high fidelity and seamless long‑term usability – in practice, collecting extremely accurate, eye‑level light data over very long periods is not yet feasible without compromising on user comfort or compliance."),
+  h3(actionButton("to_specification_form",
+                  span(strong("Start the specification")),
+                  icon = icon("file-pen"), class = "btn-success btn-lg")),
+  
 )
 
 how_to <- tagList(
@@ -49,7 +53,7 @@ how_to <- tagList(
   p("If you used this application, please cite as:"),
   fluidRow(
     column(
-      width = 8,  # 6/12 = 50%
+      width = 12,  # 6/12 = 50%
       actionButton("copy", "Software (click to copy)", onclick = "copyAPA2()"),
       p(
         tags$pre(id = "apaText2", class = "citation-pre", width = "100%",
@@ -70,7 +74,7 @@ Zenodo. https://doi.org/10.5281/zenodo.17487054"
 )
 
 site_introduction <- 
-  nav_panel(
+  nav_panel_hidden(
     "Introduction", 
     verbatimTextOutput("query"),
     card(
