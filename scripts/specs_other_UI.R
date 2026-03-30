@@ -47,7 +47,7 @@ other_specs <- function() {
     width = "50%"
   ) |> 
   tooltip(
-    "How long (in months) the factory calibration should remain valid before recalibration is required.",
+    "How long (in months) the factory calibration should remain valid before recalibration is required. Suggestion: devices should require no recalibration with normal use under 24 months.",
     placement = "right",
     options   = list(container = "body")
   ),

@@ -33,7 +33,7 @@ general_specs <- function() {
                 label = "Description of the (main) use case",
                 width = "100%",
                 rows = 3,
-                placeholder = "Please provide a succinct description of the intended use case(s) for the wearables. (Long text will break bookmarking in some browsers)"
+                placeholder = "Please provide a succinct description of the intended use case(s) for the wearables. Include specifics that might affect the choice of wearables, such as participant age, health conditions, activity level, etc. (Long text will break bookmarking in some browsers)"
   ),
   numericInput("g_d_num",
                "How many devices do you require?",

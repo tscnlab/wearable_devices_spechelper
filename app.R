@@ -29,15 +29,7 @@ source("scripts/query_string.R", local = TRUE)
 ui <- function(request) {
   page_navbar(
     # selected = "Specification",
-  title = app_title,
-  footer = app_footer,
-  id = "pages",
-  fillable = FALSE,
-  nav_spacer(),
-  site_introduction,
-  site_specification(),
-  site_about,
-  !!!nav_items,
+  title = tagList(app_title,   
   tags$style(HTML("
     /* Let the brand text wrap and break long words if needed */
     .navbar .navbar-brand {
@@ -46,7 +38,15 @@ ui <- function(request) {
       overflow-wrap: anywhere;   /* break long words/URLs */
       line-height: 1.1;
     }
-  "))
+  "))),
+  footer = app_footer,
+  id = "pages",
+  fillable = FALSE,
+  nav_spacer(),
+  site_introduction,
+  site_specification(),
+  site_about,
+  !!!nav_items,
   )
 }
 

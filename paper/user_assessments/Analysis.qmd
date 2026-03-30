@@ -1,0 +1,111 @@
+---
+title: "User assessment analysis"
+author: "Johannes Zauner"
+format: 
+  html:
+    self-contained: true
+    source-tools: true
+---
+
+## Preface
+
+This document summarizes the user-survey for the [web-tool](https://doi.org/10.17617/1.04ga-fd22).
+
+## Setup
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(readxl)
+library(here)
+library(gt)
+library(gtsummary)
+```
+
+## Import
+
+```{r}
+responses <- 
+  read_excel(
+    here(
+    "paper/user_assessments/Wearable Device Specification Tool – Usability survey (Responses).xlsx"), 
+    col_types = c("date", "text", "text", 
+        "text", "text", "text", "text", "text", 
+        "numeric", "numeric", "numeric", 
+        "numeric", "numeric", "numeric", 
+        "numeric", "numeric", "numeric", 
+        "numeric", "numeric", "numeric", 
+        "numeric", "numeric", "text", "text", 
+        "text", "text", "text", "text"))
+```
+
+## Assessment
+
+A user-survey was sent out to N=11 researchers in January 2026, 6 of which completed the survey (between 21 January and 10 February 2026).
+
+### Overview of survey and participants
+
+- 2 have a background in circadian/sleep research; 2 in architecture and lighting design; 1 in vision research, and 1 in environmental psychology and architecture
+- 3 have 2-4 years of experience working with wearable light loggers or optical radiation dosimeters; 2 have 10+ years of experience; and 1 has 5-9 years of experience
+- 4 are based in Europe; 2 are in North America
+- 4 have typical study durations (involving wearable light loggers) ≤21 days; and 2 have more varied study durations (options included <24 hours and >21 days)
+
+The survey included a small task:
+
+**Task 1 — Orientation**: Read the “Introduction” page, especially the background and the “Use Cases” section.
+
+**Task 2 — Create a specification**: Fill out the “Specification” page with a realistic study scenario (their own or a plausible one). Complete at least one field in each accordion section: **General information**, **Hardware requirements**, **Data requirements**, **Other requirements**.
+
+**Task 3 — Export**: Download the Word export (and PDF if desired).
+
+All participants completed this task. They then completed a three-stage survey consisting of:
+
+- UI/UX clarity and navigation: 14 questions, answers on a scale 1 to 5, (1 = strongly disagree / very poor, 5 = strongly agree / excellent)
+- Feedback: 4 questions, freeform answer
+- Follow-up: Question about whether follow-up contact is allowed. All researchers answered yes.
+
+### UI/UX clarity and navigation
+
+The following table shows all answers
+
+```{r}
+responses |> 
+  select(`The overall layout made it easy to find relevant sections.`:
+           `I would use (or recommend) this tool in future study planning.`) |> 
+  tbl_summary(
+    type = everything() ~ "continuous",
+    statistic = list(all_continuous() ~ "{median} ({min}, {max})")
+  ) |> 
+  modify_header(label = "**Question**")
+```
+
+Overall, the reviews were very favorable, with 12 out of 14 questions having a median ranking of 4 or better out of 5. The two lowest scored questions (median 3.5 out of 5) are regarding field labels, helper text, and tooltips. While not a low score, this area seems to be most relevant in the UX/UI section for future development.
+
+### Feedback
+
+**What is the most helpful element of the UI or content?** (n=6)
+
+Across the responses, the most helpful aspect of the UI and content is its structured, comprehensive approach to guiding decision-making. Users highlighted how it encourages careful consideration of trade-offs and key specifications, particularly through well-designed elements like the spec form and clear categorization (e.g., General, Hardware, Data, Other). The inclusion of intuitive example use cases further supports understanding, while the overall framework aids in study and protocol planning, improves communication with manufacturers, and promotes better participant compliance strategies.
+
+**What is the biggest gap or missing requirement?** (n=6)
+
+Responses suggest that there is no single critical gap, but several opportunities for enhancement. The most common need is for more practical guidance, such as information on available devices and their specifications, reference links or examples (e.g., sampling rates), and clearer details on calibration validity for less experienced users. Additionally, one response emphasized a notable omission of “human factor” considerations—highlighting the importance of tailoring device selection to participant characteristics like age, activity level, and overall user experience, which can significantly impact data quality.
+
+**What is one change that would most improve the tool?** (n=6)
+
+The most impactful improvement would be to streamline usability while adding clearer practical guidance. Several responses point to interface complexity - particularly overlapping menus and inconsistent scaling when switching units - as key friction points that could be simplified. At the same time, users would benefit from more actionable support, such as guidance on finding manufacturers or devices, clearer information on data ownership and collection, and expanded flexibility in use cases (e.g., supporting mixed-duration scenarios).
+
+**If you are willing, name a specific requirement you often need that was hard to express here.** (n=3)
+
+One respondent highlighted a need for more intuitive and technically transparent ways to express certain requirements. One key challenge is conveying physical characteristics like size, weight, and ergonomics—where visual comparisons or references to everyday objects could improve clarity, especially for sensory-sensitive populations. Another pointed to difficulty specifying advanced functional needs, such as accurate nap detection (including start, end, and duration) to better interpret light exposure data. The last entry was regarding greater transparency in device software protocols for calculating metrics like melanopic lux.
+
+### Take-aways from the survey
+
+The survey shows that the web-tool captures the requirements to specify properties of wearable devices well. Some feedback for improvements is beyond the scope of the tool: While it is important to consider specifics of a study or a study population (such as age), what that means for the device characteristics is something for the researcher to consider and we can provide little guidance. We have, however, improved the field **General information > Description of the (main) use case** and encourage researcher to add specifics about their study that might influence wearable characteristics. Another request beyond the scope were specific recommendations towards specs and manufacturers. To address this, however, we have linked to publications that cover commonly used devices and their specifications in the introduction. Further improvements based on the feedback includes: simplifying navigation by removing the top navigation bar, allowing direct numeric setting for dimensions, and suggesting a minimal calibration validity.
+
+Future improvements of the application should focus on tooltips and recommendations (e.g., giving examples), as well as visualizing (ergonomic) qualities or providing links to explanations and definitions (e.g., sampling rate).
+
+## Acknowledgements
+
+> We thank Filomena Russo and five anonymous researchers for testing the web-tool and providing feedback as part of a user-survey.

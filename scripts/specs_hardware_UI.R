@@ -37,17 +37,17 @@ hardware_specs <- function() {
   ),
   div("What do you consider maximum dimensions?"),
   layout_column_wrap(
-    sliderInput(
+    numericInput(
       "h_wid",
       "Width",
       min = 0.5, max = 10, value = 5, step = 0.5
     ),
-    sliderInput(
+    numericInput(
       "h_dep",
       "Depth",
       min = 0.5, max = 10, value = 5, step = 0.5
     ),
-    sliderInput(
+    numericInput(
       "h_hgt",
       "Height",
       min = 0.5, max = 10, value = 2.5, step = 0.5

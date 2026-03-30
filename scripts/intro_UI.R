@@ -45,7 +45,7 @@ how_to <- tagList(
   h3(actionButton("to_specification_form",
                   span(strong("Start the specification")),
                   icon = icon("file-pen"), class = "btn-success btn-lg")),
-  p("For more information on relevant considerations for wearable devices, please visit the ", a("RDA Research Guide for wearable light loggers and optical radiation dosimeters", href = "https://rda-wg-visualexperiencedata.github.io/ResearcherGuide/", .noWS = "after"), ", which provides many more considerations relating to device specifications."),
+  p("For more information on relevant considerations for wearable devices, please visit the ", a("RDA Research Guide for wearable light loggers and optical radiation dosimeters", href = "https://rda-wg-visualexperiencedata.github.io/ResearcherGuide/", .noWS = "after"), ", which provides many more considerations relating to device specifications. Please note that this tool will", strong("not"), "give recommendations for wearable models or manufacturers. For an overview of devices that have been in use, we suggest", a("van Duijnhoven et al. (2025)", href = "https://doi.org/10.1016/j.buildenv.2025.112771")),
   p("If you used this application, please cite as:"),
   fluidRow(
     column(
@@ -54,15 +54,15 @@ how_to <- tagList(
       p(
         tags$pre(id = "apaText2", class = "citation-pre", width = "100%",
                  "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
-Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.1) [Software]. 
+Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.3) [Software]. 
 https://doi.org/10.17617/1.04ga-fd22"
         ),
         ),
       actionButton("copy", "Code (click to copy)", onclick = "copyAPA()"),
       p(
         tags$pre(id = "apaText3", class = "citation-pre", width = "100%",
-                 "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
-Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.1) [Code]. 
+                 "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2026). 
+Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.3) [Code]. 
 Zenodo. https://doi.org/10.5281/zenodo.17487054"
         )
       )    )

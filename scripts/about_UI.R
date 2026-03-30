@@ -9,7 +9,7 @@ nav_panel(
     a("MeLiDos", href = "https://www.melidos.eu", target = "_blank"),
     " project. It is powered by Shiny for R. "
   ),
-  p("The app version is 1.0.0, and was released 31 October 2025."),
+  p("The app version is 1.0.3, and was released 30 March 2026."),
   p("If you used this application, please cite as:"),
   tags$script(HTML("
   function copyAPA2() {
@@ -27,16 +27,16 @@ nav_panel(
       actionButton("copy", "Software (click to copy)", onclick = "copyAPA2()"),
       p(
         tags$pre(id = "apaText4", class = "citation-pre", width = "100%",
-                 "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
-Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.1) [Software]. 
+                 "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2026). 
+Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.3) [Software]. 
 https://doi.org/10.17617/1.04ga-fd22"
         ),
       ),
       actionButton("copy", "Code (click to copy)", onclick = "copyAPA()"),
       p(
         tags$pre(id = "apaText", class = "citation-pre", width = "100%",
-                 "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2025). 
-Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.1) [Code]. 
+                 "Zauner, J., Stefani, O., Biller, A. M., Guidolin, C., & Spitschan, M. (2026). 
+Web-based specification tool for wearable light loggers and optical radiation dosimeters (Version 1.0.3) [Code]. 
 Zenodo. https://doi.org/10.5281/zenodo.17487054"
         )
       )    )
