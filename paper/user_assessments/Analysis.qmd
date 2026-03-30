@@ -5,6 +5,8 @@ format:
   html:
     self-contained: true
     source-tools: true
+  docx:
+    default: true
 ---
 
 ## Preface
@@ -14,6 +16,7 @@ This document summarizes the user-survey for the [web-tool](https://doi.org/10.1
 ## Setup
 
 ```{r}
+#| echo: false
 #| message: false
 #| warning: false
 library(tidyverse)
@@ -26,6 +29,7 @@ library(gtsummary)
 ## Import
 
 ```{r}
+#| echo: false
 responses <- 
   read_excel(
     here(
@@ -70,6 +74,7 @@ All participants completed this task. They then completed a three-stage survey c
 The following table shows all answers
 
 ```{r}
+#| echo: false
 responses |> 
   select(`The overall layout made it easy to find relevant sections.`:
            `I would use (or recommend) this tool in future study planning.`) |> 
@@ -108,4 +113,4 @@ Future improvements of the application should focus on tooltips and recommendati
 
 ## Acknowledgements
 
-> We thank Debora Constantino, Carlyn A. Patterson Gentile, Filomena Russo and five anonymous researchers for testing the web-tool and providing feedback as part of a user-survey.
+> We thank Debora Constantino, Carlyn A. Patterson Gentile, Filomena Russo and three anonymous researchers for testing the web-tool and providing feedback as part of a user-survey.

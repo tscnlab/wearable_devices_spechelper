@@ -2200,10 +2200,11 @@ vertical-align: -.125em;
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Analysis.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -2240,7 +2241,9 @@ vertical-align: -.125em;
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="import" class="level2">
@@ -2262,7 +2265,9 @@ vertical-align: -.125em;
 </section>
 <section id="assessment" class="level2">
 <h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
-<p>A user-survey was sent out to N=11 researchers, 6 of which completed the survey:</p>
+<p>A user-survey was sent out to N=11 researchers in January 2026, 6 of which completed the survey (between 21 January and 10 February 2026).</p>
+<section id="overview-of-survey-and-participants" class="level3">
+<h3 class="anchored" data-anchor-id="overview-of-survey-and-participants">Overview of survey and participants</h3>
 <ul>
 <li>2 have a background in circadian/sleep research; 2 in architecture and lighting design; 1 in vision research, and 1 in environmental psychology and architecture</li>
 <li>3 have 2-4 years of experience working with wearable light loggers or optical radiation dosimeters; 2 have 10+ years of experience; and 1 has 5-9 years of experience</li>
@@ -2270,15 +2275,524 @@ vertical-align: -.125em;
 <li>4 have typical study durations (involving wearable light loggers) ≤21 days; and 2 have more varied study durations (options included &lt;24 hours and &gt;21 days)</li>
 </ul>
 <p>The survey included a small task:</p>
-<p><strong>Task 1 — Orientation</strong> - Read the “Introduction” page, especially the background and the “Use Cases” section.</p>
-<p><strong>Task 2 — Create a specification</strong> - Fill out the “Specification” page with a realistic study scenario (their own or a plausible one). - Complete at least one field in each accordion section: <strong>General information</strong>, <strong>Hardware requirements</strong>, <strong>Data requirements</strong>, <strong>Other requirements</strong>.</p>
-<p><strong>Task 3 — Export</strong> - Download the Word export (and PDF if desired).</p>
-<p>All participants completed this task.</p>
+<p><strong>Task 1 — Orientation</strong>: Read the “Introduction” page, especially the background and the “Use Cases” section.</p>
+<p><strong>Task 2 — Create a specification</strong>: Fill out the “Specification” page with a realistic study scenario (their own or a plausible one). Complete at least one field in each accordion section: <strong>General information</strong>, <strong>Hardware requirements</strong>, <strong>Data requirements</strong>, <strong>Other requirements</strong>.</p>
+<p><strong>Task 3 — Export</strong>: Download the Word export (and PDF if desired).</p>
+<p>All participants completed this task. They then completed a three-stage survey consisting of:</p>
+<ul>
+<li>UI/UX clarity and navigation: 14 questions, answers on a scale 1 to 5, (1 = strongly disagree / very poor, 5 = strongly agree / excellent)</li>
+<li>Feedback: 4 questions, freeform answer</li>
+<li>Follow-up: Question about whether follow-up contact is allowed. All researchers answered yes.</li>
+</ul>
+</section>
+<section id="uiux-clarity-and-navigation" class="level3">
+<h3 class="anchored" data-anchor-id="uiux-clarity-and-navigation">UI/UX clarity and navigation</h3>
+<p>The following table shows all answers</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>responses <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">The overall layout made it easy to find relevant sections.</span><span class="st">`</span><span class="sc">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">`</span><span class="at">I would use (or recommend) this tool in future study planning.</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">everything</span>() <span class="sc">~</span> <span class="st">&quot;continuous&quot;</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{median} ({min}, {max})&quot;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(<span class="at">label =</span> <span class="st">&quot;**Question**&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="xnygychdgc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xnygychdgc table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#xnygychdgc thead, #xnygychdgc tbody, #xnygychdgc tfoot, #xnygychdgc tr, #xnygychdgc td, #xnygychdgc th {
+border-style: none;
+}
+#xnygychdgc p {
+margin: 0;
+padding: 0;
+}
+#xnygychdgc .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#xnygychdgc .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#xnygychdgc .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#xnygychdgc .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#xnygychdgc .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#xnygychdgc .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xnygychdgc .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#xnygychdgc .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#xnygychdgc .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#xnygychdgc .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#xnygychdgc .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#xnygychdgc .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#xnygychdgc .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#xnygychdgc .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#xnygychdgc .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#xnygychdgc .gt_from_md > :first-child {
+margin-top: 0;
+}
+#xnygychdgc .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#xnygychdgc .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#xnygychdgc .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xnygychdgc .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#xnygychdgc .gt_row_group_first td {
+border-top-width: 2px;
+}
+#xnygychdgc .gt_row_group_first th {
+border-top-width: 2px;
+}
+#xnygychdgc .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xnygychdgc .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#xnygychdgc .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#xnygychdgc .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xnygychdgc .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xnygychdgc .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#xnygychdgc .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#xnygychdgc .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#xnygychdgc .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xnygychdgc .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#xnygychdgc .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xnygychdgc .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#xnygychdgc .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xnygychdgc .gt_left {
+text-align: left;
+}
+#xnygychdgc .gt_center {
+text-align: center;
+}
+#xnygychdgc .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#xnygychdgc .gt_font_normal {
+font-weight: normal;
+}
+#xnygychdgc .gt_font_bold {
+font-weight: bold;
+}
+#xnygychdgc .gt_font_italic {
+font-style: italic;
+}
+#xnygychdgc .gt_super {
+font-size: 65%;
+}
+#xnygychdgc .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#xnygychdgc .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#xnygychdgc .gt_indent_1 {
+text-indent: 5px;
+}
+#xnygychdgc .gt_indent_2 {
+text-indent: 10px;
+}
+#xnygychdgc .gt_indent_3 {
+text-indent: 15px;
+}
+#xnygychdgc .gt_indent_4 {
+text-indent: 20px;
+}
+#xnygychdgc .gt_indent_5 {
+text-indent: 25px;
+}
+#xnygychdgc .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#xnygychdgc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Question</strong></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 6</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">The overall layout made it easy to find relevant sections.</td>
+<td class="gt_row gt_center" headers="stat_0">4.50 (3.00, 5.00)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">The accordion structure (General / Hardware / Data / Other) was intuitive.</td>
+<td class="gt_row gt_center" headers="stat_0">5.00 (2.00, 5.00)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Field labels and helper text were clear and unambiguous.</td>
+<td class="gt_row gt_center" headers="stat_0">3.50 (3.00, 5.00)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Tooltips provided the right amount of guidance.</td>
+<td class="gt_row gt_center" headers="stat_0">3.50 (3.00, 4.00)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">The bookmarking / shareable URL concept was understandable.</td>
+<td class="gt_row gt_center" headers="stat_0">4.00 (2.00, 5.00)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">The export buttons were easy to locate and understand.</td>
+<td class="gt_row gt_center" headers="stat_0">5.00 (4.00, 5.00)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">The specification fields cover the most important requirements for wearable light logger selection.</td>
+<td class="gt_row gt_center" headers="stat_0">5.00 (4.00, 5.00)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">The hardware section captures key measurement and form‑factor considerations.</td>
+<td class="gt_row gt_center" headers="stat_0">5.00 (3.00, 5.00)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">The data section captures key export and timestamp requirements.</td>
+<td class="gt_row gt_center" headers="stat_0">5.00 (4.00, 5.00)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">The “Use Cases” framing is appropriate for this domain. (Short-term use &lt;24 hours; Medium‑term use ≤21 days; Long‑term use &gt;21 days)</td>
+<td class="gt_row gt_center" headers="stat_0">4.00 (2.00, 5.00)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">The long‑term usability vs. fidelity trade‑off was clearly communicated</td>
+<td class="gt_row gt_center" headers="stat_0">4.50 (2.00, 5.00)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">The exported Word document is suitable for sharing with manufacturers.</td>
+<td class="gt_row gt_center" headers="stat_0">4.00 (3.00, 5.00)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">The exported output would support device comparison or procurement decisions.</td>
+<td class="gt_row gt_center" headers="stat_0">4.50 (4.00, 5.00)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">I would use (or recommend) this tool in future study planning.</td>
+<td class="gt_row gt_center" headers="stat_0">4.50 (3.00, 5.00)</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Median (Min, Max)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>Overall, the reviews were very favorable, with 12 out of 14 questions having a median ranking of 4 or better out of 5. The two lowest scored questions (median 3.5 out of 5) are regarding field labels, helper text, and tooltips. While not a low score, this area seems to be most relevant in the UX/UI section for future development.</p>
+</section>
+<section id="feedback" class="level3">
+<h3 class="anchored" data-anchor-id="feedback">Feedback</h3>
+<p><strong>What is the most helpful element of the UI or content?</strong> (n=6)</p>
+<p>Across the responses, the most helpful aspect of the UI and content is its structured, comprehensive approach to guiding decision-making. Users highlighted how it encourages careful consideration of trade-offs and key specifications, particularly through well-designed elements like the spec form and clear categorization (e.g., General, Hardware, Data, Other). The inclusion of intuitive example use cases further supports understanding, while the overall framework aids in study and protocol planning, improves communication with manufacturers, and promotes better participant compliance strategies.</p>
+<p><strong>What is the biggest gap or missing requirement?</strong> (n=6)</p>
+<p>Responses suggest that there is no single critical gap, but several opportunities for enhancement. The most common need is for more practical guidance, such as information on available devices and their specifications, reference links or examples (e.g., sampling rates), and clearer details on calibration validity for less experienced users. Additionally, one response emphasized a notable omission of “human factor” considerations—highlighting the importance of tailoring device selection to participant characteristics like age, activity level, and overall user experience, which can significantly impact data quality.</p>
+<p><strong>What is one change that would most improve the tool?</strong> (n=6)</p>
+<p>The most impactful improvement would be to streamline usability while adding clearer practical guidance. Several responses point to interface complexity - particularly overlapping menus and inconsistent scaling when switching units - as key friction points that could be simplified. At the same time, users would benefit from more actionable support, such as guidance on finding manufacturers or devices, clearer information on data ownership and collection, and expanded flexibility in use cases (e.g., supporting mixed-duration scenarios).</p>
+<p><strong>If you are willing, name a specific requirement you often need that was hard to express here.</strong> (n=3)</p>
+<p>One respondent highlighted a need for more intuitive and technically transparent ways to express certain requirements. One key challenge is conveying physical characteristics like size, weight, and ergonomics—where visual comparisons or references to everyday objects could improve clarity, especially for sensory-sensitive populations. Another pointed to difficulty specifying advanced functional needs, such as accurate nap detection (including start, end, and duration) to better interpret light exposure data. The last entry was regarding greater transparency in device software protocols for calculating metrics like melanopic lux.</p>
+</section>
+<section id="take-aways-from-the-survey" class="level3">
+<h3 class="anchored" data-anchor-id="take-aways-from-the-survey">Take-aways from the survey</h3>
+<p>The survey shows that the web-tool captures the requirements to specify properties of wearable devices well. Some feedback for improvements is beyond the scope of the tool: While it is important to consider specifics of a study or a study population (such as age), what that means for the device characteristics is something for the researcher to consider and we can provide little guidance. We have, however, improved the field <strong>General information &gt; Description of the (main) use case</strong> and encourage researcher to add specifics about their study that might influence wearable characteristics. Another request beyond the scope were specific recommendations towards specs and manufacturers. To address this, however, we have linked to publications that cover commonly used devices and their specifications in the introduction. Further improvements based on the feedback includes: simplifying navigation by removing the top navigation bar, allowing direct numeric setting for dimensions, and suggesting a minimal calibration validity.</p>
+<p>Future improvements of the application should focus on tooltips and recommendations (e.g., giving examples), as well as visualizing (ergonomic) qualities or providing links to explanations and definitions (e.g., sampling rate).</p>
+</section>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
 <blockquote class="blockquote">
-<p>We thank Filomena Russo and five anonymous researchers for testing the web-tool and providing feedback as part of a user-survey.</p>
+<p>We thank Debora Constantino, Carlyn A. Patterson Gentile, Filomena Russo and three anonymous researchers for testing the web-tool and providing feedback as part of a user-survey.</p>
 </blockquote>
 </section>
 
