@@ -3,15 +3,43 @@ settings <-
   function(){ 
   sidebar(
     strong("Navigation"),
+    tags$head(
+      tags$style(HTML("
+        .nav-page-button {
+          background-color: #f8f9fa;
+          color: #212529;
+          border-color: #ced4da;
+        }
+
+        .nav-page-button.active-nav-page {
+          background-color: #0d6efd;
+          color: #fff;
+          border-color: #0a58ca;
+        }
+      ")),
+      tags$script(HTML("
+        Shiny.addCustomMessageHandler('setActiveNavButton', function(buttonId) {
+          ['to_introduction', 'to_specification', 'to_about'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) {
+              el.classList.toggle('active-nav-page', id === buttonId);
+            }
+          });
+        });
+      "))
+    ),
     actionButton("to_introduction",
                  span(strong("Introduction")),
-                 icon = icon("circle-info")),
+                 icon = icon("circle-info"),
+                 class = "nav-page-button"),
     actionButton("to_specification",
                  span(strong("Specification")),
-                 icon = icon("passport")),
+                 icon = icon("passport"),
+                 class = "nav-page-button"),
     actionButton("to_about",
                  span(strong("About")),
-                 icon = icon("circle-question")),
+                 icon = icon("circle-question"),
+                 class = "nav-page-button"),
     a(
       actionButton("to_research_guide",
                    span(strong("Go to RDA research guide")),
