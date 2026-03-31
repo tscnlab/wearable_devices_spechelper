@@ -83,6 +83,18 @@ server <- function(input, output, session) {
     updateTabsetPanel(inputId = "pages", selected = "Specification")
   }) |> bindEvent(input$to_specification)
   
+  observe({
+    active_navigation_button <- switch(
+      input$pages,
+      "Introduction" = "to_introduction",
+      "Specification" = "to_specification",
+      "About" = "to_about",
+      "to_specification"
+    )
+
+    session$sendCustomMessage("setActiveNavButton", active_navigation_button)
+  })
+  
   #observer and functions to enable bookmarking and ensure it is in an accessible variable
   observe({
     reactiveValuesToList(input)
