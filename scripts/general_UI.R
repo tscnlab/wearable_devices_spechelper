@@ -9,9 +9,11 @@ h1(
 app_footer <- 
 tags$footer(
   a(
-    tags$image(src = 'logo_banner2.png', width = "100%"),
+    tags$div(style = "text-align:center;",
+             tags$image(src = 'logo_banner2.png', width = "800px")
+                 ),
     href = "https://www.melidos.eu",
-    target = "_blank"
+    target = "_blank",
   ),
   br(),
   a(
