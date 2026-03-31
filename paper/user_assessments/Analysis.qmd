@@ -113,4 +113,4 @@ Future improvements of the application should focus on tooltips and recommendati
 
 ## Acknowledgements
 
-> We thank Debora Constantino, Carlyn A. Patterson Gentile, Filomena Russo and three anonymous researchers for testing the web-tool and providing feedback as part of a user-survey.
+> We thank Debora Constantino, Juliëtte van Duijnhoven, Ali Heshmati, Carlyn A. Patterson Gentile, Filomena Russo, Jamie M. Zeitzer for testing the web-tool and providing feedback as part of a user-survey.
